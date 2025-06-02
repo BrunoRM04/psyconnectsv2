@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Mi Perfil</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section id="bienvenida-usuario" class="seccion-bienvenida-perfil animar-entrada">
+        <div class="contenido-bienvenida animacion-demora-1">
+            <h2 class="titulo-bienvenida">¡Bienvenid@ a tu perfil personal! 👋 </h2>
+            <p class="texto-bienvenida">
+                Desde aquí vas a poder revisar toda la actividad relacionada con tu cuenta y gestionar tu información
+                personal.
+            </p>
+            <p class="texto-bienvenida">
+                Podés corregir tus datos, actualizar tu foto de perfil y mantener tu información siempre al día.
+            </p>
+            <p class="texto-bienvenida">
+                Además, tenés acceso a un calendario para agendar los días en los que estás disponible.
+            </p>
+            <p class="texto-bienvenida">
+                Al formar parte de nuestro Plan Plus en PsyConnects, tu perfil será promovido de manera continua entre
+                empresas, organizaciones y otras instituciones que confían en los profesionales que integran nuestra
+                red.
+            </p>
+        </div>
+        <div class="imagen-bienvenida animacion-demora-2">
+            <img src="public/img/ilustraciones/ilustracion-6.svg" alt="Ilustración de bienvenida al perfil personal" />
+        </div>
+    </section>
+
+    <main>
+
+        <nav class="barra-navegacion-edicion-perfil">
+            <ul class="lista-pasos-edicion">
+                <li><button class="boton-paso-edicion" data-seccion="seccion-informacion-personal">1. Información
+                        Personal 👤</button></li>
+                <li><button class="boton-paso-edicion" data-seccion="seccion-contacto">2. Contacto 📞</button></li>
+                <li><button class="boton-paso-edicion" data-seccion="seccion-perfil-profesional">3. Perfil Profesional
+                        💼</button></li>
+                <li><button class="boton-paso-edicion" data-seccion="seccion-especialidades">4. Especialidades
+                        🧠</button></li>
+                <button class="boton-paso-edicion" data-seccion="seccion-redes-sociales">
+                    5. Redes Sociales 🌐
+                </button>
+            </ul>
+        </nav>
+
+        <div class="contenedor-secciones-edicion">
+
+            <div class="zona-edicion-fondo" id="seccion-informacion-personal">
+                <section class="contenedor-edicion-informacion-personal">
+                    <h2 class="titulo-edicion-informacion-personal">Información Personal 👤</h2>
+                    <form id="formulario-edicion-informacion-personal">
+                        <div class="campo-edicion-informacion-personal">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="campo-edicion-informacion-personal">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                        <div class="campo-edicion-informacion-personal">
+                            <label for="documento">Número de documento</label>
+                            <input type="text" id="documento" name="documento" required>
+                        </div>
+                        <div class="campo-edicion-informacion-personal">
+                            <label for="correo">Correo electrónico</label>
+                            <input type="email" id="correo" name="correo" required>
+                        </div>
+                        <div class="campo-edicion-informacion-personal">
+                            <label for="genero">Género con el que se identifica</label>
+                            <select id="genero" name="genero" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="femenino">Femenino</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="otro">Otro</option>
+                                <option value="prefiero-no-decirlo">Prefiero no decirlo</option>
+                            </select>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <div class="zona-edicion-fondo" id="seccion-contacto" style="display: none;">
+                <section class="contenedor-edicion-contacto">
+                    <h2 class="titulo-edicion-contacto">Contacto 📞</h2>
+                    <form id="formulario-edicion-contacto">
+                        <div class="campo-edicion-contacto">
+                            <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                            <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+                        </div>
+                        <div class="campo-edicion-contacto">
+                            <label for="pais">País</label>
+                            <select id="pais" name="pais" required>
+                                <option value="" disabled selected>Seleccione su país</option>
+                                <option value="uruguay">Uruguay</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="chile">Chile</option>
+                                <option value="paraguay">Paraguay</option>
+                                <option value="peru">Perú</option>
+                                <option value="bolivia">Bolivia</option>
+                                <option value="ecuador">Ecuador</option>
+                                <option value="colombia">Colombia</option>
+                                <option value="venezuela">Venezuela</option>
+                                <option value="mexico">México</option>
+                                <option value="panama">Panamá</option>
+                                <option value="costa-rica">Costa Rica</option>
+                                <option value="guatemala">Guatemala</option>
+                                <option value="el-salvador">El Salvador</option>
+                                <option value="honduras">Honduras</option>
+                                <option value="nicaragua">Nicaragua</option>
+                                <option value="republica-dominicana">República Dominicana</option>
+                            </select>
+                        </div>
+                        <div class="campo-edicion-contacto">
+                            <label for="telefono">Teléfono (con código de país)</label>
+                            <div class="grupo-telefono-contacto">
+                                <span id="codigo-pais">+598</span>
+                                <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 91234567">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <div class="zona-edicion-perfil-profesional-fondo" id="seccion-perfil-profesional" style="display: none;">
+                <section class="contenedor-edicion-perfil-profesional">
+                    <h2 class="titulo-edicion-perfil-profesional">Perfil Profesional 💼</h2>
+                    <form id="formulario-edicion-perfil-profesional">
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="experiencia">Años de experiencia</label>
+                            <input type="number" id="experiencia" name="experiencia" required>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="foto-perfil">Foto de perfil</label>
+                            <input type="file" id="foto-perfil" accept="image/*" required>
+                            <small class="mensaje-foto-perfil">Recomendamos que subas una imagen donde tu rostro esté
+                                centrado y visible.</small>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="descripcion">Descripción personal / profesional</label>
+                            <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label>Experiencia profesional</label>
+                            <div id="contenedor-experiencia"></div>
+                            <button type="button" class="boton-agregar-item-perfil" onclick="agregarExperiencia()">+
+                                Añadir experiencia</button>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label>Certificaciones</label>
+                            <div id="contenedor-certificaciones"></div>
+                            <button type="button" class="boton-agregar-item-perfil" onclick="agregarCertificacion()">+
+                                Añadir certificación</button>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="precio">Precio por hora (USD)</label>
+                            <input type="number" id="precio" name="precio" required>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="modalidad">Modalidad de atención</label>
+                            <select id="modalidad" name="modalidad" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="online">Online</option>
+                                <option value="presencial">Presencial</option>
+                                <option value="hibrido">Híbrido</option>
+                            </select>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="video">Video de presentación (opcional)</label>
+                            <input type="url" id="video" name="video" placeholder="Link a YouTube u otro">
+                            <input type="file" id="video-archivo" accept="video/*">
+                            <div id="video-preview"></div>
+                        </div>
+
+                        <div class="campo-edicion-perfil-profesional">
+                            <label for="documentos">Documentos adjuntos (CV, matrícula, etc.)</label>
+                            <input type="file" id="documentos" multiple>
+                            <div id="documentos-preview"></div>
+                        </div>
+
+                    </form>
+                </section>
+            </div>
+
+            <section id="seccion-especialidades" class="zona-edicion-especialidades-fondo" style="display: none;">
+                <div class="zona-edicion-especialidades">
+                    <h2 class="titulo-formulario">Especialidades 🧠</h2>
+
+                    <form id="formulario-especialidades">
+
+                        <!-- Terapias -->
+                        <div class="grupo-campo-especialidades">
+                            <label>Selecciona hasta 3 tipos de terapia</label>
+                            <div class="contenedor-opciones-especialidades" id="terapias">
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Cognitivo-conductual</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Psicoanálisis</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Humanista</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="terapia">Gestalt</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Sistémica</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Narrativa</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="terapia">Mindfulness</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="terapia">EMDR</button>
+                            </div>
+                        </div>
+
+                        <!-- Idiomas -->
+                        <div class="grupo-campo-especialidades">
+                            <label>Idiomas hablados</label>
+                            <div class="contenedor-opciones-especialidades" id="idiomas">
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Español</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Inglés</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Chino</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Hindi</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Árabe</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="idioma">Francés</button>
+                            </div>
+                        </div>
+
+                        <!-- Enfoques -->
+                        <div class="grupo-campo-especialidades">
+                            <label>Especialización o área de enfoque</label>
+                            <div class="contenedor-opciones-especialidades" id="enfoques">
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Ansiedad</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Depresión</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Duelo</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Autoestima</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Estrés</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Fobias</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Trauma</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Adicciones</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Pareja</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Infanto-juvenil</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Sexualidad</button>
+                                <button type="button" class="opcion-especialidad" data-grupo="enfoque">Trastornos
+                                    alimenticios</button>
+                                <button type="button" class="opcion-especialidad"
+                                    data-grupo="enfoque">Neurodivergencias</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+            <section id="seccion-redes-sociales" class="zona-edicion-redes-sociales-fondo" style="display: none;">
+                <div class="zona-edicion-redes-sociales">
+                    <h2 class="titulo-formulario">Redes Sociales 🌐</h2>
+
+                    <form id="formulario-redes-sociales">
+                        <div class="campo-edicion-redes-sociales">
+                            <label for="instagram">Instagram</label>
+                            <input type="url" id="instagram" name="instagram"
+                                placeholder="https://instagram.com/usuario">
+                        </div>
+
+                        <div class="campo-edicion-redes-sociales">
+                            <label for="facebook">Facebook</label>
+                            <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/usuario">
+                        </div>
+
+                        <div class="campo-edicion-redes-sociales">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" name="linkedin"
+                                placeholder="https://linkedin.com/in/usuario">
+                        </div>
+
+                        <div class="campo-edicion-redes-sociales">
+                            <label for="tiktok">TikTok</label>
+                            <input type="url" id="tiktok" name="tiktok" placeholder="https://tiktok.com/@usuario">
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+
+        <section class="zona-botones-final">
+            <div class="contenedor-botones-final">
+                <button class="boton-guardar-cambios">💾 Guardar cambios</button>
+                <button class="boton-eliminar-perfil">🗑️ Eliminar perfil</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web",
+            storageBucket: "psyconnects-web.firebasestorage.app",
+            messagingSenderId: "172678256167",
+            appId: "1:172678256167:web:a490df1ae64f551a9c2002"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        let uid = null;
+
+        // Navegación entre pasos
+        const botonesPasos = document.querySelectorAll('.boton-paso-edicion');
+        const secciones = document.querySelectorAll(
+            '.zona-edicion-fondo, .zona-edicion-informacion-personal-fondo, .zona-edicion-contacto-fondo, .zona-edicion-perfil-profesional-fondo, .zona-edicion-especialidades-fondo, .zona-edicion-redes-sociales-fondo'
+        );
+
+        botonesPasos.forEach(boton => {
+            boton.addEventListener('click', () => {
+                const idObjetivo = boton.getAttribute('data-seccion');
+                secciones.forEach(seccion => {
+                    seccion.style.display = (seccion.id === idObjetivo) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Agregar experiencia profesional
+        window.agregarExperiencia = function () {
+            const contenedor = document.getElementById('contenedor-experiencia');
+            const div = document.createElement('div');
+            div.className = 'item-experiencia-perfil';
+            div.innerHTML = `
+      <input type="text" placeholder="Lugar de trabajo" required>
+      <input type="text" placeholder="Período (Ej: 2020-2023)" required>
+      <input type="text" placeholder="Tareas realizadas" required>
+
+      <button type="button" class="boton-toggle-actualmente" data-activo="false">🔵 Actualmente no trabajo aquí</button>
+
+      <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar experiencia</button>
+    `;
+
+            // Activar botón toggle luego de insertarlo
+            contenedor.appendChild(div);
+            const toggle = div.querySelector('.boton-toggle-actualmente');
+            toggle.addEventListener('click', () => {
+                const activo = toggle.getAttribute('data-activo') === "true";
+                toggle.setAttribute('data-activo', !activo);
+                toggle.textContent = !activo ? "🟢 Actualmente trabajo aquí" : "🔵 Actualmente no trabajo aquí";
+                toggle.classList.toggle('activo');
+            });
+        };
+
+        // Agregar certificación
+        window.agregarCertificacion = function () {
+            const contenedor = document.getElementById('contenedor-certificaciones');
+            const div = document.createElement('div');
+            div.className = 'item-certificacion-perfil';
+            div.innerHTML = `
+      <input type="text" placeholder="Nombre de la certificación" required>
+      <input type="text" placeholder="Año de inicio" required>
+      <input type="text" placeholder="Año de finalización" required>
+      <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar certificación</button>
+    `;
+            contenedor.appendChild(div);
+        };
+
+        document.querySelectorAll('.opcion-especialidad').forEach(boton => {
+            boton.addEventListener('click', () => {
+                const grupo = boton.getAttribute('data-grupo');
+                const seleccionadas = document.querySelectorAll(`.opcion-especialidad[data-grupo="${grupo}"].seleccionada`);
+
+                // Si ya está seleccionada, deseleccionamos
+                if (boton.classList.contains('seleccionada')) {
+                    boton.classList.remove('seleccionada');
+                    return;
+                }
+
+                // Si hay menos de 3 seleccionadas, permitimos seleccionar
+                if (seleccionadas.length < 3) {
+                    boton.classList.add('seleccionada');
+                } else {
+                    alert("Puedes seleccionar hasta 3 opciones en esta categoría.");
+                }
+            });
+        });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const codigosPorPais = {
+        'uruguay': '+598', 'argentina': '+54', 'brasil': '+55', 'chile': '+56',
+        'paraguay': '+595', 'peru': '+51', 'bolivia': '+591', 'ecuador': '+593',
+        'colombia': '+57', 'venezuela': '+58', 'mexico': '+52', 'panama': '+507',
+        'costa-rica': '+506', 'guatemala': '+502', 'el-salvador': '+503',
+        'honduras': '+504', 'nicaragua': '+505', 'republica-dominicana': '+1'
+    };
+
+    const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
+    if (!usuario) {
+        alert("No se encontraron datos del usuario. Por favor, inicia sesión.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Información Personal
+    document.getElementById('nombre').value = usuario.nombre || "";
+    document.getElementById('apellido').value = usuario.apellido || "";
+    document.getElementById('documento').value = usuario.documento || "";
+    document.getElementById('correo').value = usuario.correo || "";
+    document.getElementById('genero').value = usuario.genero || "";
+
+    // Contacto
+    document.getElementById('fecha-nacimiento').value = usuario.fechaNacimiento || "";
+    document.getElementById('pais').value = usuario.pais || "";
+    document.getElementById('telefono').value = usuario.telefono || "";
+
+    // Código de país dinámico
+    const codigoElemento = document.getElementById('codigo-pais');
+    const paisSelect = document.getElementById('pais');
+    const actualizarCodigoPais = () => {
+        const pais = paisSelect.value;
+        const codigo = codigosPorPais[pais] || '';
+        if (codigoElemento) codigoElemento.textContent = codigo;
+    };
+    actualizarCodigoPais();
+    paisSelect.addEventListener('change', actualizarCodigoPais);
+
+    // Perfil Profesional
+    document.getElementById('experiencia').value = usuario.experiencia || "";
+    document.getElementById('descripcion').value = usuario.descripcion || "";
+    document.getElementById('precio').value = usuario.precio || "";
+    document.getElementById('modalidad').value = usuario.modalidad || "";
+    document.getElementById('video').value = usuario.videoLink || "";
+
+    // Redes Sociales
+    document.getElementById('instagram').value = usuario.instagram || "";
+    document.getElementById('facebook').value = usuario.facebook || "";
+    document.getElementById('linkedin').value = usuario.linkedin || "";
+    document.getElementById('tiktok').value = usuario.tiktok || "";
+
+    // Foto de perfil (visual)
+    if (usuario.fotoPerfilURL) {
+        const img = document.createElement('img');
+        img.src = usuario.fotoPerfilURL;
+        img.alt = "Foto de perfil";
+        img.style.maxWidth = "150px";
+        const inputFoto = document.getElementById('foto-perfil');
+        inputFoto.insertAdjacentElement('beforebegin', img);
+    }
+
+    // Experiencia profesional
+    if (Array.isArray(usuario.experienciaProfesional)) {
+        usuario.experienciaProfesional.forEach(exp => {
+            agregarExperiencia();
+            const inputs = document.querySelectorAll('#contenedor-experiencia .item-experiencia-perfil:last-child input');
+            if (inputs.length >= 3) {
+                inputs[0].value = exp.lugar;
+                inputs[1].value = exp.periodo;
+                inputs[2].value = exp.tareas;
+                const toggle = document.querySelector('#contenedor-experiencia .boton-toggle-actualmente:last-child');
+                if (exp.actualmente && toggle) toggle.click();
+            }
+        });
+    }
+
+    // Certificaciones
+    if (Array.isArray(usuario.certificaciones)) {
+        usuario.certificaciones.forEach(cert => {
+            agregarCertificacion();
+            const inputs = document.querySelectorAll('#contenedor-certificaciones .item-certificacion-perfil:last-child input');
+            if (inputs.length >= 3) {
+                inputs[0].value = cert.nombre;
+                inputs[1].value = cert.inicio;
+                inputs[2].value = cert.fin;
+            }
+        });
+    }
+
+    // Documentos adjuntos
+    if (Array.isArray(usuario.documentosAdjuntos)) {
+        mostrarArchivosConEliminar(usuario.documentosAdjuntos, "documentos-preview", "archivo");
+    }
+
+    // Video de presentación (archivo subido, no link)
+    if (usuario.videoArchivoURL) {
+        mostrarArchivosConEliminar([usuario.videoArchivoURL], "video-preview", "video");
+    }
+
+    // Especialidades
+    marcarSeleccionados("terapia", usuario.terapias || []);
+    marcarSeleccionados("idioma", usuario.idiomas || []);
+    marcarSeleccionados("enfoque", usuario.enfoques || []);
+});
+
+// Marca opciones seleccionadas (especialidades, terapias, idiomas)
+function marcarSeleccionados(grupo, lista) {
+    lista.forEach(valor => {
+        const boton = Array.from(document.querySelectorAll(`.opcion-especialidad[data-grupo="${grupo}"]`))
+            .find(btn => btn.textContent.trim().toLowerCase() === valor.toLowerCase());
+        if (boton) boton.classList.add('seleccionada');
+    });
+}
+
+// Muestra archivos o videos con botón de eliminar
+function mostrarArchivosConEliminar(listaURLs, contenedorID, tipo = "archivo") {
+    const contenedor = document.getElementById(contenedorID);
+    contenedor.innerHTML = "";
+
+    listaURLs.forEach((url) => {
+        const bloque = document.createElement("div");
+        bloque.className = 'item-certificacion-perfil';
+
+        if (tipo === "video") {
+            bloque.innerHTML = `
+                <video controls width="100%" src="${url}"></video>
+                <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar video</button>
+            `;
+        } else {
+            const nombreArchivo = decodeURIComponent(url.split("/").pop().split("?")[0]);
+            bloque.innerHTML = `
+                <p>📎 ${nombreArchivo}</p>
+                <a href="${url}" target="_blank">Ver documento</a><br>
+                <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar documento</button>
+            `;
+        }
+
+        contenedor.appendChild(bloque);
+    });
+}
+    </script>
+
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        function mostrarCargador() {
+            const fondo = document.getElementById('fondo-cargador');
+            const linea = document.getElementById('linea-carga');
+
+            fondo.style.opacity = '1';
+            fondo.style.pointerEvents = 'auto';
+            linea.style.width = '0%';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        fondo.style.opacity = '0';
+                        fondo.style.pointerEvents = 'none';
+                    }, 300);
+                } else {
+                    progreso += 1;
+                    linea.style.width = progreso + '%';
+                }
+            }, 10);
+        }
+
+        window.addEventListener('load', mostrarCargador);
+
+        document.addEventListener('click', function (e) {
+            const tag = e.target.tagName.toLowerCase();
+            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
+                mostrarCargador();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

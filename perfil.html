@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Perfil Profesional</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="perfil-seccion-principal">
+            <div class="perfil-distribucion-dos-columnas">
+
+                <aside class="perfil-columna-izquierda">
+                    <div class="perfil-caja-izquierda">
+
+                        <img id="perfil-foto-usuario" class="perfil-imagen-usuario" src="" alt="Foto del profesional">
+
+                        <h1 id="perfil-nombre-completo" class="perfil-nombre-completo">Nombre Apellido</h1>
+
+                        <div class="perfil-datos-personales-simples">
+                            <p>🎂 <span id="perfil-edad"></span></p>
+                            <p>📍 <span id="perfil-pais"></span></p>
+                            <p>🚻 <span id="perfil-genero"></span></p>
+                            <p>🧑‍⚕️ <span id="perfil-modalidad"></span></p>
+                            <p>💰 <span id="perfil-precio"></span> USD/hr</p>
+                        </div>
+
+                        <div id="perfil-chips-terapias" class="perfil-chips-terapias"></div>
+
+                    </div>
+                </aside>
+
+                <div class="perfil-columna-derecha">
+
+                    <div class="perfil-bloque-descripcion perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">📝 Descripción</h2>
+                        <p id="perfil-descripcion" class="perfil-texto-descripcion"></p>
+                    </div>
+
+                    <div class="perfil-bloque-experiencia perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">💼 Experiencia Profesional</h2>
+                        <div id="perfil-lista-experiencia" class="perfil-listado-experiencia"></div>
+                    </div>
+
+                    <div class="perfil-bloque-certificaciones perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">📚 Certificaciones</h2>
+                        <div id="perfil-lista-certificaciones" class="perfil-listado-certificaciones"></div>
+                    </div>
+
+                    <div class="perfil-bloque-idiomas-enfoques perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">🌐 Idiomas y Áreas de Enfoque</h2>
+                        <div class="perfil-contenedor-idiomas-enfoques">
+                            <div class="perfil-columna-idiomas">
+                                <h3>🗣️ Idiomas</h3>
+                                <div id="perfil-chips-idiomas" class="perfil-chips"></div>
+                            </div>
+                            <div class="perfil-columna-enfoques">
+                                <h3>🧠 Enfoques</h3>
+                                <div id="perfil-chips-enfoques" class="perfil-chips"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="perfil-bloque-video perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">🎥 Video de Presentación</h2>
+                        <div id="perfil-contenedor-video" class="perfil-video-contenedor"></div>
+                    </div>
+
+                    <div class="perfil-bloque-documentos perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">📄 Documentos Adjuntos</h2>
+                        <div id="perfil-contenedor-documentos" class="perfil-documentos-contenedor"></div>
+                    </div>
+
+                    <div class="perfil-aparecer">
+                        <h2 class="perfil-titulo-seccion">🔗 Redes Sociales</h2>
+                        <div id="perfil-redes-iconos" class="perfil-iconos-redes"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            getDocs
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        function obtenerParametro(nombre) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nombre);
+        }
+
+        function calcularEdad(fecha) {
+            const hoy = new Date();
+            const nacimiento = new Date(fecha);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const m = hoy.getMonth() - nacimiento.getMonth();
+            if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) edad--;
+            return edad;
+        }
+
+        async function buscarPsicologo(correo) {
+            const colecciones = ["usuarios_plus", "usuarios_free"];
+            for (const nombre of colecciones) {
+                const snap = await getDocs(collection(db, nombre));
+                for (const doc of snap.docs) {
+                    const datos = doc.data();
+                    if (datos.correo === correo) {
+                        datos.tipoCuenta = nombre === "usuarios_plus" ? "plus" : "free"; // ⬅️ AÑADIDO CLAVE
+                        return datos;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function crearChips(lista) {
+            return (lista || []).map(item => `<span>${item}</span>`).join('');
+        }
+
+        function crearExperiencia(lista) {
+            return (lista || []).map(item => `
+    <div class="perfil-item-experiencia">
+      <strong>${item.lugar}</strong> (${item.periodo})<br>
+      <em>${item.tareas}</em>
+      ${item.actualmente ? "<div class='perfil-chips'><span>Actualmente</span></div>" : ""}
+    </div>
+  `).join('');
+        }
+
+        function crearCertificaciones(lista) {
+            return (lista || []).map(item => `
+    <div class="perfil-item-certificacion">
+      <strong>${item.nombre}</strong><br>
+      ${item.inicio} - ${item.fin}
+    </div>
+  `).join('');
+        }
+
+        function mostrarVideo(datos) {
+            if (datos.videoArchivoURL) {
+                return `<video controls><source src="${datos.videoArchivoURL}" type="video/mp4"></video>`;
+            } else if (datos.videoLink) {
+                return `<a href="${datos.videoLink}" target="_blank" style="color: var(--color-principal);">Ver video externo</a>`;
+            } else {
+                return `<p>No hay video disponible.</p>`;
+            }
+        }
+
+        function mostrarDocumentos(urls) {
+            return (urls || []).map((url, i) => `<a href="${url}" target="_blank">📄 Documento ${i + 1}</a>`).join('<br>');
+        }
+
+        function mostrarRedes(datos) {
+            let html = "";
+            if (datos.instagram) html += `<a href="${datos.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>`;
+            if (datos.facebook) html += `<a href="${datos.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>`;
+            if (datos.linkedin) html += `<a href="${datos.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>`;
+            if (datos.tiktok) html += `<a href="${datos.tiktok}" target="_blank"><i class='bx bxl-tiktok'></i></a>`;
+            return html;
+        }
+
+        async function cargarPerfil() {
+            const correo = obtenerParametro("id");
+            if (!correo) return alert("No se proporcionó un ID de perfil.");
+
+            const datos = await buscarPsicologo(correo);
+            if (!datos) return alert("No se encontró el perfil.");
+
+            const esPlus = window.location.href.includes("usuarios_plus");
+
+            const contenedorIzquierdo = document.querySelector(".perfil-caja-izquierda");
+
+            const boton = document.createElement("button");
+            boton.className = "boton-reservar-cita";
+
+            if (datos.tipoCuenta === "plus") {
+                boton.textContent = "Reservar Cita Ahora";
+                boton.onclick = () => {
+                    alert("Función de reserva aún no implementada.");
+                };
+            } else if (datos.tipoCuenta === "free") {
+                boton.textContent = "Consultar Disponibilidad";
+                boton.onclick = () => {
+                    alert("Este profesional tiene disponibilidad variable. Te recomendamos enviarle un mensaje.");
+                };
+            }
+
+            contenedorIzquierdo.appendChild(boton);
+
+        document.getElementById("perfil-foto-usuario").src = datos.fotoPerfilURL || "";
+        document.getElementById("perfil-nombre-completo").textContent = `${datos.nombre} ${datos.apellido}`;
+        document.getElementById("perfil-edad").textContent = `${calcularEdad(datos.fechaNacimiento)} años`;
+        document.getElementById("perfil-pais").textContent = datos.pais || "";
+        document.getElementById("perfil-genero").textContent = datos.genero || "";
+        document.getElementById("perfil-modalidad").textContent = datos.modalidad || "";
+        document.getElementById("perfil-precio").textContent = datos.precio || "";
+        document.getElementById("perfil-chips-terapias").innerHTML = crearChips(datos.terapias);
+
+        document.getElementById("perfil-descripcion").textContent = datos.descripcion || "";
+        document.getElementById("perfil-lista-experiencia").innerHTML = crearExperiencia(datos.experienciaProfesional);
+        document.getElementById("perfil-lista-certificaciones").innerHTML = crearCertificaciones(datos.certificaciones);
+        document.getElementById("perfil-chips-idiomas").innerHTML = crearChips(datos.idiomas);
+        document.getElementById("perfil-chips-enfoques").innerHTML = crearChips(datos.enfoques);
+        document.getElementById("perfil-contenedor-video").innerHTML = mostrarVideo(datos);
+        document.getElementById("perfil-contenedor-documentos").innerHTML = mostrarDocumentos(datos.documentosAdjuntos);
+        document.getElementById("perfil-redes-iconos").innerHTML = mostrarRedes(datos);
+        }
+
+        cargarPerfil();
+
+        const observador = new IntersectionObserver(entradas => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('activo');
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.perfil-aparecer').forEach(el => {
+            observador.observe(el);
+        });
+    </script>
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        function mostrarCargador() {
+            const fondo = document.getElementById('fondo-cargador');
+            const linea = document.getElementById('linea-carga');
+
+            fondo.style.opacity = '1';
+            fondo.style.pointerEvents = 'auto';
+            linea.style.width = '0%';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        fondo.style.opacity = '0';
+                        fondo.style.pointerEvents = 'none';
+                    }, 300);
+                } else {
+                    progreso += 1;
+                    linea.style.width = progreso + '%';
+                }
+            }, 10);
+        }
+
+        window.addEventListener('load', mostrarCargador);
+
+        document.addEventListener('click', function (e) {
+            const tag = e.target.tagName.toLowerCase();
+            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
+                mostrarCargador();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

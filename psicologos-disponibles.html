@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Psicólogos Disponibles</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="psicologos-disponibles" class="seccion-informacion-registro animar-consulta">
+            <div class="contenido-informativo animacion-demora-1">
+                <h2 class="titulo-informativo">¿Buscás acompañamiento psicológico?</h2>
+                <p class="texto-informativo">
+                    En PsyConnects vas a encontrar profesionales de la salud mental verificados y listos para
+                    acompañarte en tu proceso cuando lo necesites.
+                </p>
+                <p class="texto-informativo">
+                    Más de 300 psicólogos y psicólogas de diferentes países ya forman parte de nuestra comunidad.
+                </p>
+                <p class="texto-informativo">
+                    Cada perfil incluye información clara sobre la experiencia, los idiomas que maneja, y las
+                    modalidades de atención que ofrece.
+                </p>
+                <p class="texto-informativo">
+                    Usá nuestros filtros por país, especialidad, tipo de atención, precio y más, para encontrar a la
+                    persona que mejor se adapte a vos.
+                </p>
+                <p class="texto-informativo">
+                    *Ten en cuenta que cada profesional establece sus propios horarios y valores por sesión.
+                </p>
+            </div>
+            <div class="imagen-informativa animacion-demora-2">
+                <img src="public/img/ilustraciones/ilustracion-5.svg" alt="Ilustración de psicólogos disponibles" />
+            </div>
+        </section>
+
+
+        <section class="seccion-filtros-psicologos">
+            <form id="formulario-filtros-psicologos" class="formulario-filtros-psicologos">
+
+                <div class="grupo-filtro">
+                    <label for="ordenar-edad">Edad:</label>
+                    <select id="ordenar-edad" class="campo-filtro">
+                        <option value="">Todos</option>
+                        <option value="asc">Menor a mayor</option>
+                        <option value="desc">Mayor a menor</option>
+                    </select>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label for="ordenar-precio">Precio por hora (USD):</label>
+                    <select id="ordenar-precio" class="campo-filtro">
+                        <option value="">Todos</option>
+                        <option value="asc">Menor a mayor</option>
+                        <option value="desc">Mayor a menor</option>
+                    </select>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label for="ordenar-experiencia">Experiencia:</label>
+                    <select id="ordenar-experiencia" class="campo-filtro">
+                        <option value="">Todos</option>
+                        <option value="asc">Menor a mayor</option>
+                        <option value="desc">Mayor a menor</option>
+                    </select>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label for="filtro-genero">Género:</label>
+                    <select id="filtro-genero" class="campo-filtro">
+                        <option value="">Todos</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="grupo-filtro">
+                    <label for="filtro-pais">País:</label>
+                    <select id="filtro-pais" class="campo-filtro">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+
+                <div class="grupo-filtro botones-filtro">
+                    <button type="button" id="aplicar-filtros" class="boton-filtro-aplicar"><i class='bx bx-filter'></i>
+                        Aplicar</button>
+                    <button type="reset" id="limpiar-filtros" class="boton-filtro-limpiar"><i class='bx bx-eraser'></i>
+                        Limpiar</button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="seccion-psicologos-disponibles">
+            <div id="contenedor-psicologos-disponibles"></div>
+        </section>
+
+        <div class="fondo-cargador" id="fondo-cargador">
+            <div class="contenedor-barra-carga">
+                <span class="porcentaje-blanco">0%</span>
+                <div class="linea-carga-contenedor">
+                    <div class="linea-carga" id="linea-carga"></div>
+                </div>
+                <span class="porcentaje-blanco">100%</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let psicologosTotales = [];
+
+        function calcularEdad(fechaNacimiento) {
+            const hoy = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const mes = hoy.getMonth() - nacimiento.getMonth();
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+            return edad;
+        }
+
+        function capitalizar(texto) {
+            return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+        }
+
+        function crearCard(datos, esRecomendado = false) {
+            const contenedor = document.getElementById("contenedor-psicologos-disponibles");
+            const div = document.createElement("div");
+            div.className = "tarjeta-perfil-psicologo";
+
+            const edad = calcularEdad(datos.fechaNacimiento);
+            const pais = capitalizar(datos.pais || "Desconocido");
+            const terapiasHTML = (datos.terapias || []).slice(0, 3).map(t => `<span>${t}</span>`).join('');
+
+            const redesHTML = `
+            ${datos.instagram ? `<a href="${datos.instagram}" target="_blank"><i class='bx bxl-instagram'></i></a>` : ''}
+            ${datos.facebook ? `<a href="${datos.facebook}" target="_blank"><i class='bx bxl-facebook'></i></a>` : ''}
+            ${datos.linkedin ? `<a href="${datos.linkedin}" target="_blank"><i class='bx bxl-linkedin'></i></a>` : ''}
+            ${datos.tiktok ? `<a href="${datos.tiktok}" target="_blank"><i class='bx bxl-tiktok'></i></a>` : ''}
+            `;
+
+            const recomendadoHTML = esRecomendado ? `<div class="etiqueta-recomendado">💙 Recomendad@</div>` : '';
+
+            div.innerHTML = `
+            ${recomendadoHTML}
+            <div class="fondo-onda-psicologo"></div>
+            <img class="imagen-perfil-psicologo" src="${datos.fotoPerfilURL}" alt="Foto de ${datos.nombre}">
+            <div class="seccion-inferior-psicologo">
+                <h3 class="nombre-psicologo">${datos.nombre} ${datos.apellido}</h3>
+                <div class="info-basica-psicologo">
+                <span class="dato-edad-psicologo">🎂 ${edad} años</span>
+                <span class="dato-pais-psicologo">📍 ${pais}</span>
+                </div>
+                <div class="lista-terapias-psicologo">
+                ${terapiasHTML}
+                </div>
+                <div class="iconos-redes-psicologo">
+                ${redesHTML}
+                </div>
+<div class="boton-ver-perfil">
+    <button onclick="location.href='perfil.html?id=${datos.correo}'">Ver perfil 👉</button>
+</div>
+
+${(datos.videoArchivoURL || datos.videoLink) ? `
+<div class="boton-ver-perfil">
+    <a href="${datos.videoArchivoURL || datos.videoLink}" target="_blank">
+    <button>Ver video 🎥</button>
+    </a>
+</div>
+` : ''}
+            </div>
+            `;
+
+            contenedor.appendChild(div);
+        }
+
+        function mostrarPsicologos(lista) {
+            const contenedor = document.getElementById("contenedor-psicologos-disponibles");
+            contenedor.innerHTML = "";
+
+            const recomendados = lista.filter(p => p.recomendado);
+            const normales = lista.filter(p => !p.recomendado);
+
+            [...recomendados, ...normales].forEach(item => crearCard(item.datos, item.recomendado));
+        }
+
+        async function cargarPsicologos() {
+            const recomendados = [];
+            const normales = [];
+
+            const snapshotRecomendados = await getDocs(collection(db, "usuarios_plus"));
+            snapshotRecomendados.forEach(doc => {
+                recomendados.push({ datos: doc.data(), recomendado: true });
+            });
+
+            const snapshotNormales = await getDocs(collection(db, "usuarios_free"));
+            snapshotNormales.forEach(doc => {
+                normales.push({ datos: doc.data(), recomendado: false });
+            });
+
+            const todos = mezclarArray([...recomendados, ...normales]);
+            psicologosTotales = todos;
+
+            mostrarPsicologos(todos);
+            cargarPaisesUnicos(todos);
+        }
+
+        function mezclarArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function cargarPaisesUnicos(lista) {
+            const selectPais = document.getElementById("filtro-pais");
+            const paisesUnicos = [...new Set(lista.map(p => p.datos.pais).filter(Boolean))];
+            paisesUnicos.sort().forEach(pais => {
+                const option = document.createElement("option");
+                option.value = pais;
+                option.textContent = pais;
+                selectPais.appendChild(option);
+            });
+        }
+
+        document.getElementById("aplicar-filtros").addEventListener("click", () => {
+            const genero = document.getElementById("filtro-genero").value;
+            const pais = document.getElementById("filtro-pais").value;
+            const ordenEdad = document.getElementById("ordenar-edad")?.value;
+            const ordenPrecio = document.getElementById("ordenar-precio")?.value;
+            const ordenExperiencia = document.getElementById("ordenar-experiencia")?.value;
+
+            let filtrados = [...psicologosTotales];
+
+            if (genero) {
+                filtrados = filtrados.filter(p => p.datos.genero === genero);
+            }
+            if (pais) {
+                filtrados = filtrados.filter(p => p.datos.pais === pais);
+            }
+
+            if (ordenEdad) {
+                filtrados.sort((a, b) => {
+                    const edadA = calcularEdad(a.datos.fechaNacimiento);
+                    const edadB = calcularEdad(b.datos.fechaNacimiento);
+                    return ordenEdad === "asc" ? edadA - edadB : edadB - edadA;
+                });
+            } else if (ordenPrecio) {
+                filtrados.sort((a, b) => {
+                    const precioA = parseFloat(a.datos.precio || 0);
+                    const precioB = parseFloat(b.datos.precio || 0);
+                    return ordenPrecio === "asc" ? precioA - precioB : precioB - precioA;
+                });
+            } else if (ordenExperiencia) {
+                filtrados.sort((a, b) => {
+                    const expA = parseFloat(a.datos.experiencia || 0);
+                    const expB = parseFloat(b.datos.experiencia || 0);
+                    return ordenExperiencia === "asc" ? expA - expB : expB - expA;
+                });
+            }
+
+            mostrarPsicologos(filtrados);
+        });
+
+        document.getElementById("limpiar-filtros").addEventListener("click", () => {
+            mostrarPsicologos(psicologosTotales);
+        });
+
+        cargarPsicologos();
+    </script>
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        function mostrarCargador() {
+            const fondo = document.getElementById('fondo-cargador');
+            const linea = document.getElementById('linea-carga');
+
+            fondo.style.opacity = '1';
+            fondo.style.pointerEvents = 'auto';
+            linea.style.width = '0%';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        fondo.style.opacity = '0';
+                        fondo.style.pointerEvents = 'none';
+                    }, 300);
+                } else {
+                    progreso += 1;
+                    linea.style.width = progreso + '%';
+                }
+            }, 10);
+        }
+
+        window.addEventListener('load', mostrarCargador);
+
+        document.addEventListener('click', function (e) {
+            const tag = e.target.tagName.toLowerCase();
+            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
+                mostrarCargador();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

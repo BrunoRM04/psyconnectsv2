@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Inicio</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="inicio" class="seccion-bienvenida-psyconnects">
+            <div class="contenido-bienvenida animar-entrada animacion-retraso-1">
+                <h1 class="titulo-bienvenida">¡Bienvenid@ a PsyConnects!</h1>
+                <p class="parrafo-bienvenida">
+                    Encontrá psicólogos y psicólogas de toda América Latina que se adapten a vos y a lo que estás buscando.  
+                    Podés filtrar por país, precio, experiencia, edad, género, tipo de terapia y mucho más.  
+                    Elegí con tranquilidad a la persona adecuada para acompañarte en tu proceso. 🌎
+                </p>
+                <div class="botones-bienvenida">
+                    <button class="boton-accion-bienvenida animar-entrada animacion-retraso-3">
+                        📅 Reservar Cita Ahora
+                    </button>
+                    <a href="registro-psicologos.html"><button
+                            class="boton-accion-bienvenida activo animar-entrada animacion-retraso-2"> 🧑‍⚕️ Registrarse
+                            como Psicólogo</button></a>
+                </div>
+            </div>
+            <div class="ilustracion-bienvenida animar-entrada animacion-retraso-4">
+                <img src="public/img/ilustraciones/ilustracion-1.svg" alt="Ilustración sobre salud mental" />
+            </div>
+        </section>
+
+        <section id="empresas" class="seccion-bienvenida-invertida">
+            <div class="ilustracion-bienvenida animar-entrada animacion-retraso-1">
+                <img src="public/img/ilustraciones/ilustracion-2.svg" alt="Ilustración empresas" />
+            </div>
+            <div class="contenido-bienvenida-invertida animar-entrada animacion-retraso-2">
+                <h2 class="titulo-bienvenida-invertida"><span class="azul">Soluciones</span> para Empresas</h2>
+                <p class="parrafo-bienvenida-invertida">
+                    ¿Tu institución busca profesionales de la salud mental? En PsyConnects podés publicar ofertas,
+                    encontrar talento y fortalecer el bienestar en tu equipo. 📋
+                </p>
+                <div class="botones-bienvenida-invertida">
+                    <button class="boton-accion-bienvenida-invertida activo">🏢 Registrarte como Empresa</button>
+                    <button class="boton-accion-bienvenida-invertida">📄 Ver Ofertas Disponibles</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="consultas" class="seccion-consultas-sitio">
+            <div class="contenido-consultas animar-consulta animacion-demora-1">
+                <h1 class="titulo-consulta">¿Tenés dudas sobre PsyConnects?</h1>
+                <p class="texto-consulta">
+                    Ya seas un profesional en salud mental o una organización interesada en colaborar,
+                    encontrá aquí la información que necesitás para comenzar. 🤝
+                </p>
+                <div class="botones-consulta">
+                    <button class="boton-consulta animar-consulta animacion-demora-3">
+                        🧠 Para Psicólogos
+                    </button>
+                    <button class="boton-consulta activo animar-consulta animacion-demora-2">
+                        🏢 Para Empresas
+                    </button>
+                </div>
+            </div>
+            <div class="imagen-consulta animar-consulta animacion-demora-4">
+                <img src="public/img/ilustraciones/ilustracion-3.svg" alt="Consulta ilustración">
+            </div>
+        </section>
+
+        <div class="fondo-cargador" id="fondo-cargador">
+            <div class="contenedor-barra-carga">
+                <span class="porcentaje-blanco">0%</span>
+                <div class="linea-carga-contenedor">
+                    <div class="linea-carga" id="linea-carga"></div>
+                </div>
+                <span class="porcentaje-blanco">100%</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        function mostrarCargador() {
+            const fondo = document.getElementById('fondo-cargador');
+            const linea = document.getElementById('linea-carga');
+
+            fondo.style.opacity = '1';
+            fondo.style.pointerEvents = 'auto';
+            linea.style.width = '0%';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        fondo.style.opacity = '0';
+                        fondo.style.pointerEvents = 'none';
+                    }, 300);
+                } else {
+                    progreso += 1;
+                    linea.style.width = progreso + '%';
+                }
+            }, 10);
+        }
+
+        window.addEventListener('load', mostrarCargador);
+
+        document.addEventListener('click', function (e) {
+            const tag = e.target.tagName.toLowerCase();
+            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
+                mostrarCargador();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

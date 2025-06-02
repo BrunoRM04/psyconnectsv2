@@ -1,0 +1,3040 @@
+@import url('https://fonts.googleapis.com/css2?family=Tuffy:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Tuffy", sans-serif;
+}
+
+:root {
+    --color-principal: #1358B4;
+    --color-fondo: white;
+    --color-hover-fondo: #1358B4;
+    --color-hover-texto: white;
+    --color-hover-inverso-fondo: var(--color-principal);
+    --color-hover-inverso-texto: white;
+    --gris-suave: #f2f2f2;
+    --gris-texto: #333333;
+    --negro-suave: #1a1a1a;
+}
+
+/* GENERAL */
+
+/* HEADER */
+
+.barra-promocional {
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    text-align: center;
+    padding: 0.7rem 1rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mensaje-promocional {
+    margin: 0;
+    max-width: 100%;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: clamp(0.75rem, 2vw, 1.1rem);
+    padding: 0 1rem;
+}
+
+@media (max-width: 480px) {
+    .barra-promocional {
+        padding: 0.5rem;
+    }
+
+    .mensaje-promocional {
+        padding: 0 0.5rem;
+    }
+}
+
+.encabezado-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--color-principal);
+}
+
+.contenedor-logo .logo-imagen {
+    height: 50px;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+.contenedor-iconos {
+    display: flex;
+    gap: 15px;
+}
+
+.contenedor-iconos i {
+    font-size: 26px;
+    color: var(--color-fondo);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.menu-desplegable {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    z-index: 1000;
+}
+
+.menu-desplegable.activo {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.icono-cerrar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--color-principal);
+}
+
+.lista-navegacion {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.lista-navegacion li {
+    margin: 15px 0;
+}
+
+.lista-navegacion a {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--color-principal);
+    background-color: transparent;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.lista-navegacion a:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+@media (max-width: 768px) {
+    .logo-imagen {
+        height: 40px;
+        max-width: 140px;
+    }
+
+    .contenedor-iconos i {
+        font-size: 24px;
+    }
+
+    .lista-navegacion li {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-imagen {
+        height: 35px;
+        max-width: 120px;
+    }
+
+    .lista-navegacion {
+        width: 90%;
+    }
+
+    .lista-navegacion li {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .icono-cerrar {
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+    }
+}
+
+/* HEADER */
+
+/* SECCIÓN - INDEX */
+
+.seccion-bienvenida-psyconnects {
+    background-color: var(--color-principal);
+    padding: 5px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 500px;
+    gap: 40px;
+}
+
+.contenido-bienvenida {
+    max-width: 600px;
+    flex: 1 1 500px;
+}
+
+.titulo-bienvenida {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.parrafo-bienvenida {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.botones-bienvenida {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.boton-accion-bienvenida {
+    padding: 12px 24px;
+    border: 2px solid white;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.boton-accion-bienvenida:hover {
+    background-color: var(--color-hover-inverso-fondo);
+    color: var(--color-hover-inverso-texto);
+    border-color: var(--color-hover-inverso-fondo);
+}
+
+.boton-accion-bienvenida.activo {
+    background-color: var(--color-principal);
+    color: white;
+    border-color: var(--color-principal);
+}
+
+.seccion-bienvenida-invertida {
+    background-color: var(--color-fondo);
+    padding: 40px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 500px;
+    gap: 40px;
+}
+
+.contenido-bienvenida-invertida {
+    max-width: 600px;
+    flex: 1 1 500px;
+    text-align: right;
+}
+
+.titulo-bienvenida-invertida {
+    font-size: 2.8rem;
+    color: var(--negro-suave);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.titulo-bienvenida-invertida .azul {
+    color: var(--color-principal);
+}
+
+.parrafo-bienvenida-invertida {
+    font-size: 1.2rem;
+    color: var(--gris-texto);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.botones-bienvenida-invertida {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.boton-accion-bienvenida-invertida {
+    padding: 12px 24px;
+    border: 2px solid var(--color-principal);
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.boton-accion-bienvenida-invertida:hover {
+    background-color: var(--color-principal);
+    color: white;
+    border-color: var(--color-principal);
+}
+
+.boton-accion-bienvenida-invertida.activo {
+    background-color: var(--color-principal);
+    color: white;
+    border-color: var(--color-principal);
+}
+
+.ilustracion-bienvenida {
+    flex: 1 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ilustracion-bienvenida img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes aparecer-deslizar {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animar-entrada {
+    animation: aparecer-deslizar 1s ease forwards;
+    opacity: 0;
+}
+
+.animacion-retraso-1 {
+    animation-delay: 0.2s;
+}
+
+.animacion-retraso-2 {
+    animation-delay: 0.4s;
+}
+
+.animacion-retraso-3 {
+    animation-delay: 0.6s;
+}
+
+.animacion-retraso-4 {
+    animation-delay: 0.8s;
+}
+
+@media (max-width: 1024px) {
+
+    .titulo-bienvenida,
+    .titulo-bienvenida-invertida {
+        font-size: 2.5rem;
+    }
+
+    .parrafo-bienvenida,
+    .parrafo-bienvenida-invertida {
+        font-size: 1.1rem;
+    }
+
+    .boton-accion-bienvenida,
+    .boton-accion-bienvenida-invertida {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .seccion-bienvenida-psyconnects,
+    .seccion-bienvenida-invertida {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 10px;
+        gap: 10px;
+        min-height: unset;
+        margin-bottom: 30px;
+    }
+
+    .contenido-bienvenida,
+    .contenido-bienvenida-invertida {
+        margin: 0 auto;
+        flex: unset;
+        text-align: center;
+    }
+
+    .titulo-bienvenida,
+    .titulo-bienvenida-invertida {
+        font-size: 1.85rem;
+        margin-bottom: 2px;
+    }
+
+    .parrafo-bienvenida,
+    .parrafo-bienvenida-invertida {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    .botones-bienvenida,
+    .botones-bienvenida-invertida {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .boton-accion-bienvenida,
+    .boton-accion-bienvenida-invertida {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    .ilustracion-bienvenida {
+        order: -1;
+        max-width: 100%;
+        padding: 0;
+        margin-bottom: -60px;
+        margin-top: -40px;
+    }
+
+    .ilustracion-bienvenida img {
+        width: 100%;
+        max-width: 720px;
+    }
+}
+
+.seccion-consultas-sitio {
+    background-color: var(--color-principal);
+    padding: 5px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-height: 500px;
+    gap: 40px;
+    margin-bottom: 0;
+}
+
+.contenido-consultas {
+    max-width: 600px;
+    flex: 1 1 500px;
+}
+
+.titulo-consulta {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.texto-consulta {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.botones-consulta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.boton-consulta {
+    padding: 12px 24px;
+    border: 2px solid white;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.boton-consulta:hover {
+    background-color: var(--color-hover-inverso-fondo);
+    color: var(--color-hover-inverso-texto);
+    border-color: var(--color-hover-inverso-fondo);
+}
+
+.boton-consulta.activo {
+    background-color: var(--color-principal);
+    color: white;
+    border-color: var(--color-principal);
+}
+
+.imagen-consulta {
+    flex: 1 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.imagen-consulta img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes deslizar-consulta {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animar-consulta {
+    animation: deslizar-consulta 1s ease forwards;
+    opacity: 0;
+}
+
+.animacion-demora-1 {
+    animation-delay: 0.2s;
+}
+
+.animacion-demora-2 {
+    animation-delay: 0.4s;
+}
+
+.animacion-demora-3 {
+    animation-delay: 0.6s;
+}
+
+.animacion-demora-4 {
+    animation-delay: 0.8s;
+}
+
+@media (max-width: 1024px) {
+    .titulo-consulta {
+        font-size: 2.5rem;
+    }
+
+    .texto-consulta {
+        font-size: 1.1rem;
+    }
+
+    .boton-consulta {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .seccion-consultas-sitio {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 10px;
+        gap: 10px;
+        min-height: unset;
+        margin-bottom: 0;
+    }
+
+    .contenido-consultas {
+        margin: 0 auto;
+        flex: unset;
+        text-align: center;
+    }
+
+    .titulo-consulta {
+        font-size: 1.85rem;
+        margin-bottom: 2px;
+    }
+
+    .texto-consulta {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+
+    .botones-consulta {
+        justify-content: center;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .boton-consulta {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    .imagen-consulta {
+        order: -1;
+        max-width: 100%;
+        padding: 0;
+        margin-bottom: -60px;
+        margin-top: -50px;
+    }
+
+    .imagen-consulta img {
+        width: 100%;
+        max-width: 720px;
+    }
+}
+
+/* SECCIÓN - INDEX */
+
+/* REGISTRO PSICÓLOGOS - GENERAL */
+
+.seccion-informacion-registro {
+    background-color: var(--color-principal);
+    padding: 60px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    min-height: 500px;
+}
+
+.contenido-informativo {
+    max-width: 600px;
+    flex: 1 1 500px;
+}
+
+.titulo-informativo {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: -40px;
+    font-weight: bold;
+}
+
+.texto-informativo {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.imagen-informativa {
+    flex: 1 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.imagen-informativa img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1024px) {
+    .titulo-informativo {
+        font-size: 2.4rem;
+    }
+
+    .texto-informativo {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .seccion-informacion-registro {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .contenido-informativo {
+        flex: unset;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .titulo-informativo {
+        font-size: 1.9rem;
+    }
+
+    .texto-informativo {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .imagen-informativa {
+        order: -1;
+        margin-top: -40px;
+        margin-bottom: -40px;
+        padding: 0;
+    }
+
+    .imagen-informativa img {
+        width: 100%;
+        max-width: 700px;
+    }
+}
+
+
+
+.seccion-planes-suscripcion {
+    background-color: var(--color-fondo);
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.titulo-planes {
+    font-size: 2.5rem;
+    color: var(--color-principal);
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+.contenedor-planes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.tarjeta-plan-azul {
+    background-color: var(--color-principal);
+    color: white;
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nombre-plan {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.precio-plan {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.lista-caracteristicas {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.lista-caracteristicas li {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.icono-lista {
+    font-size: 1.4rem;
+    margin-right: 10px;
+    color: white;
+}
+
+.boton-registro {
+    padding: 12px 24px;
+    border: 2px solid white;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.boton-registro:hover {
+    background-color: var(--color-hover-inverso-fondo);
+    color: var(--color-hover-inverso-texto);
+    border-color: var(--color-hover-inverso-fondo);
+}
+
+@media (max-width: 768px) {
+    .contenedor-planes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tarjeta-plan-azul {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+/* REGISTRO PSICÓLOGOS - GENERAL */
+
+/* REGISTRO PSICÓLOGOS - FREE */
+
+.formulario-registro {
+    background-color: var(--color-principal);
+    color: white;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contenedor-formulario {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 100%;
+    max-width: 650px;
+    background-color: var(--color-fondo);
+    padding: 2.5rem 2rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.pasos-registro {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.paso-registro {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--gris-suave);
+    color: var(--gris-texto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.paso-registro.activo {
+    background-color: var(--color-principal);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(19, 88, 180, 0.3);
+}
+
+.titulo-formulario {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-principal);
+    font-size: 1.4rem;
+}
+
+.grupo-campo {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-campo label {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--gris-texto);
+    font-size: 1rem;
+}
+
+.grupo-campo input,
+.grupo-campo select,
+.grupo-campo textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--gris-suave);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: var(--gris-texto);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus,
+.grupo-campo textarea:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(19, 88, 180, 0.2);
+}
+
+.campo-password {
+    position: relative;
+}
+
+.contenedor-password {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.contenedor-password input {
+    padding-right: 2.5rem;
+}
+
+.icono-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    color: var(--color-principal);
+    cursor: pointer;
+}
+
+.boton-formulario {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.navegacion-formulario {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.igual-ancho {
+    flex: 1;
+    min-width: 120px;
+}
+
+.campo-telefono {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.campo-telefono span {
+    background-color: var(--gris-suave);
+    color: var(--gris-texto);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-weight: 500;
+    border: 1px solid var(--gris-suave);
+    font-size: 1rem;
+}
+
+.contenedor-ajuste-foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.preview-imagen {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--gris-suave);
+    position: relative;
+    touch-action: none;
+}
+
+.preview-imagen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: auto;
+    user-select: none;
+    cursor: grab;
+    transition: none;
+    transition: transform 0.2s ease;
+}
+
+.mensaje-foto {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: var(--color-hover-fondo);
+}
+
+.boton-secundario {
+    margin-top: 0.5rem;
+    background-color: transparent;
+    border: 1px dashed var(--color-principal);
+    color: var(--color-principal);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+}
+
+.boton-secundario:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.item-dinamico {
+    border: 1px solid var(--gris-suave);
+    border-radius: 8px;
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.item-dinamico input,
+.item-dinamico select {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    display: block;
+}
+
+.boton-eliminar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    line-height: 1rem;
+    cursor: pointer;
+}
+
+.contenedor-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.opcion {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-principal);
+    background-color: white;
+    color: var(--color-principal);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.opcion.activa {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.opcion.activa::after {
+    content: '✔';
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+@media (max-width: 600px) {
+    .contenedor-formulario {
+        padding: 2rem 1rem;
+        max-width: 95%;
+    }
+
+    .paso-registro {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .titulo-formulario {
+        font-size: 1.2rem;
+    }
+
+    .grupo-campo label,
+    .grupo-campo input,
+    .grupo-campo select,
+    .grupo-campo textarea {
+        font-size: 0.95rem;
+    }
+
+    .boton-formulario {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+    }
+
+    .contenedor-opciones {
+        flex-direction: column;
+    }
+
+    .campo-telefono {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .campo-telefono span {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navegacion-formulario {
+        flex-direction: column;
+    }
+
+    .igual-ancho {
+        width: 100%;
+    }
+
+    .preview-imagen {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* REGISTRO PSICÓLOGOS - FREE */
+
+/* PSICOLOGOS DISPONIBLES */
+
+
+#contenedor-psicologos-disponibles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    justify-items: center;
+    margin-top: -50px;
+}
+
+.tarjeta-perfil-psicologo {
+    width: 100%;
+    max-width: 360px;
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    margin: 4.5rem 0 2rem;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: aparecer 0.6s ease-out forwards;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fondo-onda-psicologo {
+    width: 100%;
+    height: 120px;
+    background-color: var(--color-hover-fondo);
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+    position: relative;
+    z-index: 1;
+}
+
+.imagen-perfil-psicologo {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid white;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background-color: white;
+}
+
+.seccion-inferior-psicologo {
+    background-color: white;
+    padding: 80px 1.3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nombre-psicologo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: -18px 0 12px;
+    color: var(--color-hover-fondo);
+    letter-spacing: 0.3px;
+}
+
+.info-basica-psicologo {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.dato-edad-psicologo,
+.dato-pais-psicologo {
+    background-color: #1359b4;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.lista-terapias-psicologo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.lista-terapias-psicologo span {
+    background-color: #1359b4;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.iconos-redes-psicologo {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+
+.iconos-redes-psicologo a {
+    background-color: white;
+    border: 2px solid #1359b4;
+    color: #1359b4;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.iconos-redes-psicologo a:hover {
+    background-color: #1359b4;
+    color: white;
+}
+
+.boton-ver-perfil button {
+    background-color: white;
+    color: #1359b4;
+    border: 2px solid #1359b4;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.boton-ver-perfil button:hover {
+    background-color: #1359b4;
+    color: white;
+}
+
+.etiqueta-recomendado {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--color-fondo);
+    color: var(--color-hover-fondo);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 25px;
+    z-index: 3;
+}
+
+@media (max-width: 1024px) {
+    #contenedor-psicologos-disponibles {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .tarjeta-perfil-psicologo {
+        margin: 4rem 0 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tarjeta-perfil-psicologo {
+        margin: 3rem 0 1rem;
+    }
+
+    .imagen-perfil-psicologo {
+        width: 110px;
+        height: 110px;
+        top: 45px;
+    }
+
+    .nombre-psicologo {
+        font-size: 1.5rem;
+    }
+
+    .dato-edad-psicologo,
+    .dato-pais-psicologo,
+    .lista-terapias-psicologo span,
+    .boton-ver-perfil button {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+}
+
+.seccion-filtros-psicologos {
+    background-color: var(--color-fondo);
+    padding: 30px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 100px auto 40px auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.titulo-filtros {
+    font-size: 1.8rem;
+    color: var(--color-principal);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.formulario-filtros-psicologos {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.grupo-filtro label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--gris-texto);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.campo-filtro {
+    padding: 0.75rem;
+    border: 1px solid var(--gris-suave);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--gris-texto);
+    transition: all 0.3s ease;
+}
+
+.botones-filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.boton-filtro-aplicar,
+.boton-filtro-limpiar {
+    padding: 0.85rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    width: 50%;
+}
+
+.boton-filtro-aplicar {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.boton-filtro-aplicar:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+.boton-filtro-limpiar {
+    background-color: transparent;
+    border: 1px solid var(--color-principal);
+    color: var(--color-principal);
+}
+
+.boton-filtro-limpiar:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .formulario-filtros-psicologos {
+        grid-template-columns: 1fr;
+    }
+
+    .botones-filtro {
+        flex-direction: column;
+    }
+
+    .boton-filtro-aplicar,
+    .boton-filtro-limpiar {
+        width: 100%;
+    }
+}
+
+/* PSICOLOGOS DISPONIBLES */
+
+/* LOGIN */
+
+.contenedor-login {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    background-color: var(--color-principal);
+    font-family: sans-serif;
+    color: white;
+}
+
+.login-mensaje-bienvenida {
+    flex: 1;
+    background-color: var(--color-principal);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.login-mensaje-bienvenida h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.subtitulo-bienvenida {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.explicacion-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.login-formulario {
+    flex: 1;
+    background-color: var(--color-fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+    color: var(--color-principal);
+}
+
+.formulario-inicio-sesion {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.etiqueta-login {
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+.campo-login {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--color-principal);
+    border-radius: 6px;
+    background-color: white;
+    color: var(--gris-texto);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.contenedor-contrasena {
+    position: relative;
+}
+
+.boton-ver-contrasena {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--color-principal);
+}
+
+.boton-iniciar-sesion {
+    background-color: var(--color-principal);
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-iniciar-sesion:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+@media (max-width: 1024px) {
+    .contenedor-login {
+        flex-direction: column;
+    }
+
+    .login-mensaje-bienvenida,
+    .login-formulario {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .login-mensaje-bienvenida h1 {
+        font-size: 2.2rem;
+    }
+
+    .subtitulo-bienvenida {
+        font-size: 1.2rem;
+    }
+
+    .explicacion-login {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-mensaje-bienvenida h1 {
+        font-size: 2rem;
+    }
+
+    .formulario-inicio-sesion {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-login {
+        flex-direction: column;
+    }
+
+    .login-mensaje-bienvenida,
+    .login-formulario {
+        padding: 1.5rem 1rem;
+    }
+
+    .login-mensaje-bienvenida h1 {
+        font-size: 1.7rem;
+    }
+
+    .subtitulo-bienvenida {
+        font-size: 1rem;
+    }
+
+    .explicacion-login {
+        font-size: 0.95rem;
+    }
+
+    .campo-login {
+        padding: 0.6rem;
+    }
+
+    .boton-iniciar-sesion {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .login-mensaje-bienvenida h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitulo-bienvenida {
+        font-size: 0.95rem;
+    }
+
+    .explicacion-login {
+        font-size: 0.85rem;
+        gap: 1rem;
+    }
+
+    .boton-iniciar-sesion {
+        font-size: 0.9rem;
+    }
+}
+
+/* LOGIN */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.barra-navegacion-edicion-perfil {
+    width: 100%;
+    background-color: var(--color-principal);
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.lista-pasos-edicion {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.lista-pasos-edicion li a {
+    text-decoration: none;
+    background-color: white;
+    color: var(--color-principal);
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.lista-pasos-edicion li a:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    border: 2px solid white;
+}
+
+.zona-edicion-informacion-personal-fondo {
+    background-color: var(--color-principal);
+    min-height: 100vh;
+    width: 100%;
+    padding: 5rem 1rem;
+    box-sizing: border-box;
+}
+
+.contenedor-edicion-informacion-personal {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+.titulo-edicion-informacion-personal {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+.campo-edicion-informacion-personal {
+    margin-bottom: 1.5rem;
+}
+
+.campo-edicion-informacion-personal label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.campo-edicion-informacion-personal input,
+.campo-edicion-informacion-personal select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+}
+
+.barra-navegacion-edicion-perfil {
+    background-color: var(--color-principal);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.lista-pasos-edicion {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.boton-paso-edicion {
+    background-color: white;
+    color: var(--color-principal);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-paso-edicion:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+.zona-edicion-fondo {
+    background-color: var(--color-principal);
+    padding: 4rem 1rem;
+    min-height: 100vh;
+}
+
+.contenedor-edicion-informacion-personal,
+.contenedor-edicion-contacto {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem 1rem;
+    color: white;
+}
+
+.zona-edicion-contacto-fondo {
+    background-color: var(--color-principal);
+    padding: 4rem 1rem;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.contenedor-edicion-contacto {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+.titulo-edicion-contacto {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+.campo-edicion-contacto {
+    margin-bottom: 1.5rem;
+}
+
+.campo-edicion-contacto label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.campo-edicion-contacto input,
+.campo-edicion-contacto select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+}
+
+.campo-edicion-contacto select option {
+    color: black;
+}
+
+.grupo-telefono-contacto {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.grupo-telefono-contacto span {
+    background-color: white;
+    color: var(--color-principal);
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.grupo-telefono-contacto input {
+    flex-grow: 1;
+}
+
+.zona-edicion-perfil-profesional-fondo {
+    background-color: var(--color-principal);
+    padding: 4rem 1rem;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contenedor-edicion-perfil-profesional {
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+.titulo-edicion-perfil-profesional {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+.campo-edicion-perfil-profesional {
+    margin-bottom: 1.5rem;
+}
+
+.campo-edicion-perfil-profesional label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.campo-edicion-perfil-profesional input,
+.campo-edicion-perfil-profesional select,
+.campo-edicion-perfil-profesional textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid white;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--color-principal);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.campo-edicion-perfil-profesional textarea {
+    resize: vertical;
+}
+
+.boton-agregar-item-perfil {
+    margin-top: 0.5rem;
+    background-color: white;
+    color: var(--color-principal);
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton-agregar-item-perfil:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+.mensaje-foto-perfil {
+    display: block;
+    margin-top: 0.3rem;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.item-experiencia-perfil,
+.item-certificacion-perfil {
+    margin-bottom: 1.5rem;
+    background-color: var(--color-fondo);
+    /* blanco */
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    color: var(--color-principal);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item-experiencia-perfil input,
+.item-certificacion-perfil input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-principal);
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: var(--color-principal);
+    background-color: var(--color-fondo);
+}
+
+.boton-toggle-actualmente {
+    display: inline-block;
+    margin-top: 0.8rem;
+    background-color: var(--gris-suave);
+    color: var(--negro-suave);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.boton-toggle-actualmente.activo {
+    background-color: var(--color-principal);
+    color: var(--color-hover-texto);
+}
+
+.boton-eliminar-bloque {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: var(--color-principal);
+    color: var(--color-hover-texto);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.boton-eliminar-bloque:hover {
+    background-color: var(--color-hover-inverso-fondo);
+    color: var(--color-hover-inverso-texto);
+}
+
+.zona-edicion-especialidades-fondo {
+    background-color: var(--color-principal);
+    color: var(--color-hover-texto);
+    padding: 3rem 2rem;
+    min-height: 100vh;
+}
+
+.zona-edicion-especialidades {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.titulo-formulario {
+    color: var(--color-hover-texto);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.grupo-campo-especialidades {
+    margin-bottom: 2rem;
+}
+
+.grupo-campo-especialidades label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--color-hover-texto);
+}
+
+.contenedor-opciones-especialidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.opcion-especialidad {
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.opcion-especialidad:hover {
+    background-color: var(--gris-suave);
+}
+
+.opcion-especialidad.seleccionada {
+    background-color: var(--color-hover-inverso-fondo);
+    color: var(--color-hover-inverso-texto);
+    font-weight: bold;
+}
+
+.zona-edicion-redes-sociales-fondo {
+    background-color: var(--color-principal);
+    color: var(--color-hover-texto);
+    padding: 3rem 2rem;
+    min-height: 100vh;
+}
+
+.zona-edicion-redes-sociales {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.titulo-formulario {
+    color: var(--color-hover-texto);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.campo-edicion-redes-sociales {
+    margin-bottom: 1.8rem;
+}
+
+.campo-edicion-redes-sociales label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-hover-texto);
+}
+
+.campo-edicion-redes-sociales input {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.zona-botones-final {
+    background-color: var(--color-principal);
+    width: 100%;
+    padding: 1.5rem 0;
+}
+
+.contenedor-botones-final {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.boton-guardar-cambios,
+.boton-eliminar-perfil {
+    padding: 0.75rem 1.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    color: var(--color-principal);
+    transition: 0.3s ease;
+}
+
+.boton-guardar-cambios:hover,
+.boton-eliminar-perfil:hover {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+}
+
+@media screen and (max-width: 480px) {
+
+    .contenedor-edicion-informacion-personal,
+    .contenedor-edicion-contacto,
+    .contenedor-edicion-perfil-profesional,
+    .zona-edicion-especialidades,
+    .zona-edicion-redes-sociales,
+    .contenedor-botones-final {
+        padding: 1rem 0.8rem;
+        max-width: 100%;
+    }
+
+    .grupo-telefono-contacto {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .lista-pasos-edicion {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .boton-guardar-cambios,
+    .boton-eliminar-perfil {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contenedor-botones-final {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+    .contenedor-edicion-informacion-personal,
+    .contenedor-edicion-contacto,
+    .contenedor-edicion-perfil-profesional,
+    .zona-edicion-especialidades,
+    .zona-edicion-redes-sociales,
+    .contenedor-botones-final {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .lista-pasos-edicion {
+        gap: 1rem;
+    }
+
+    .contenedor-botones-final {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .boton-guardar-cambios,
+    .boton-eliminar-perfil {
+        min-width: 150px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .contenedor-edicion-informacion-personal,
+    .contenedor-edicion-contacto,
+    .contenedor-edicion-perfil-profesional,
+    .zona-edicion-especialidades,
+    .zona-edicion-redes-sociales {
+        padding: 2rem;
+        max-width: 90%;
+    }
+
+    .contenedor-botones-final {
+        gap: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    .contenedor-edicion-informacion-personal,
+    .contenedor-edicion-contacto,
+    .contenedor-edicion-perfil-profesional,
+    .zona-edicion-especialidades,
+    .zona-edicion-redes-sociales {
+        max-width: 700px;
+    }
+
+    .contenedor-botones-final {
+        max-width: 800px;
+    }
+}
+
+@media screen and (min-width: 1441px) {
+
+    .contenedor-edicion-informacion-personal,
+    .contenedor-edicion-contacto,
+    .contenedor-edicion-perfil-profesional,
+    .zona-edicion-especialidades,
+    .zona-edicion-redes-sociales {
+        max-width: 850px;
+    }
+
+    .contenedor-botones-final {
+        max-width: 900px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.perfil-seccion-principal {
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--gris-texto);
+    display: flex;
+    min-height: 100vh;
+}
+
+.perfil-distribucion-dos-columnas {
+    display: flex;
+    width: 100%;
+}
+
+.perfil-columna-izquierda {
+    width: 360px;
+    min-height: 100vh;
+    background-color: var(--color-principal);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.perfil-caja-izquierda {
+    padding: 0 2rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
+}
+
+.perfil-imagen-usuario {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+.perfil-nombre-completo {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+    color: white;
+}
+
+.perfil-datos-personales-simples {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.perfil-datos-personales-simples p {
+    margin: 0;
+    color: white;
+    font-weight: 500;
+}
+
+.perfil-datos-personales-simples span {
+    text-transform: capitalize;
+}
+
+.perfil-chips-terapias {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.perfil-chips-terapias span {
+    background-color: white;
+    color: var(--color-principal);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.perfil-columna-derecha {
+    flex: 1;
+    padding: 4rem 3rem;
+    background-color: var(--color-fondo);
+}
+
+.perfil-titulo-seccion {
+    font-size: 1.4rem;
+    color: var(--color-principal);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--color-principal);
+    padding-left: 0.6rem;
+}
+
+.perfil-bloque-descripcion,
+.perfil-bloque-experiencia,
+.perfil-bloque-certificaciones,
+.perfil-bloque-idiomas-enfoques,
+.perfil-bloque-video,
+.perfil-bloque-documentos {
+    border-bottom: 1px dashed var(--gris-suave);
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+}
+
+.perfil-texto-descripcion {
+    padding: 1.4rem;
+    border-radius: 8px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.perfil-listado-experiencia .perfil-item-experiencia,
+.perfil-listado-certificaciones .perfil-item-certificacion {
+    padding: 1rem;
+    border-left: 4px solid var(--color-principal);
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+}
+
+.perfil-contenedor-idiomas-enfoques {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.perfil-columna-idiomas,
+.perfil-columna-enfoques {
+    flex: 1;
+    min-width: 200px;
+}
+
+.perfil-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.perfil-chips span {
+    background-color: var(--color-principal);
+    color: white;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.perfil-video-contenedor video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.perfil-documentos-contenedor a {
+    display: inline-block;
+    color: var(--color-principal);
+    margin-bottom: 0.8rem;
+    text-decoration: none;
+}
+
+.perfil-documentos-contenedor a:hover {
+    text-decoration: underline;
+}
+
+.perfil-iconos-redes a {
+    font-size: 1.5rem;
+    margin-right: 1.2rem;
+    color: var(--color-principal);
+    transition: color 0.3s ease;
+}
+
+.perfil-iconos-redes a:hover {
+    color: var(--gris-texto);
+}
+
+.perfil-aparecer {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.perfil-aparecer.activo {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (min-width: 1280px) {
+    .perfil-distribucion-dos-columnas {
+        flex-direction: row;
+    }
+
+    .perfil-columna-izquierda {
+        width: 380px;
+        padding: 3rem 1.8rem;
+    }
+
+    .perfil-columna-derecha {
+        padding: 3rem 2.5rem;
+    }
+}
+
+@media (max-width: 1279px) and (min-width: 1024px) {
+    .perfil-distribucion-dos-columnas {
+        flex-direction: row;
+    }
+
+    .perfil-columna-izquierda {
+        width: 340px;
+        padding: 3rem 1.5rem;
+    }
+
+    .perfil-columna-derecha {
+        padding: 3rem 2rem;
+    }
+
+    .perfil-imagen-usuario {
+        width: 170px;
+        height: 170px;
+    }
+
+    .perfil-nombre-completo {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+    .perfil-distribucion-dos-columnas {
+        flex-direction: column;
+    }
+
+    .perfil-columna-izquierda {
+        width: 100%;
+        min-height: auto;
+        padding: 2.5rem 1.8rem;
+    }
+
+    .perfil-columna-derecha {
+        padding: 2.5rem 1.8rem;
+    }
+
+    .perfil-imagen-usuario {
+        width: 150px;
+        height: 150px;
+    }
+
+    .perfil-nombre-completo {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 480px) {
+    .perfil-distribucion-dos-columnas {
+        flex-direction: column;
+    }
+
+    .perfil-columna-izquierda,
+    .perfil-columna-derecha {
+        width: 100%;
+        padding: 2rem 1.2rem;
+    }
+
+    .perfil-imagen-usuario {
+        width: 130px;
+        height: 130px;
+    }
+
+    .perfil-nombre-completo {
+        font-size: 1.5rem;
+    }
+
+    .perfil-titulo-seccion {
+        font-size: 1.2rem;
+    }
+
+    .perfil-texto-descripcion {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 479px) {
+    .perfil-distribucion-dos-columnas {
+        flex-direction: column;
+    }
+
+    .perfil-columna-izquierda,
+    .perfil-columna-derecha {
+        width: 100%;
+        padding: 1.8rem 1rem;
+    }
+
+    .perfil-imagen-usuario {
+        width: 110px;
+        height: 110px;
+    }
+
+    .perfil-nombre-completo {
+        font-size: 1.4rem;
+    }
+
+    .perfil-titulo-seccion {
+        font-size: 1.1rem;
+    }
+
+    .perfil-texto-descripcion {
+        font-size: 0.9rem;
+    }
+
+    .perfil-chips span,
+    .perfil-chips-terapias span,
+    .perfil-datos-personales-simples span {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+    }
+
+    .perfil-iconos-redes a {
+        font-size: 1.3rem;
+        margin-right: 0.8rem;
+    }
+}
+
+.boton-reservar-cita {
+    margin-top: 1.5rem;
+    background-color: white;
+    color: var(--color-principal);
+    border: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-reservar-cita:hover {
+    background-color: var(--gris-suave);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.seccion-bienvenida-perfil {
+    background-color: var(--color-principal);
+    padding: 60px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    min-height: 500px;
+}
+
+.contenido-bienvenida {
+    max-width: 600px;
+    flex: 1 1 500px;
+}
+
+.titulo-bienvenida {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.texto-bienvenida {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.imagen-bienvenida {
+    flex: 1 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.imagen-bienvenida img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .seccion-bienvenida-perfil {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .contenido-bienvenida {
+        flex: unset;
+        margin: 0 auto;
+    }
+
+    .titulo-bienvenida {
+        font-size: 2rem;
+    }
+
+    .texto-bienvenida {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .imagen-bienvenida {
+        order: -1;
+        margin-bottom: -30px;
+        padding: 0;
+    }
+
+    .imagen-bienvenida img {
+        width: 100%;
+        max-width: 700px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CARGADOR DE BOTONES */
+
+.fondo-cargador {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contenedor-barra-carga {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 90vw;
+    flex-direction: row;
+}
+
+.porcentaje-blanco {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.linea-carga-contenedor {
+    width: 250px;
+    max-width: 80vw;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    border-radius: 2px;
+    flex-grow: 1;
+}
+
+.linea-carga {
+    height: 100%;
+    width: 0%;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .linea-carga-contenedor {
+        width: 180px;
+    }
+
+    .porcentaje-blanco {
+        font-size: 0.9rem;
+    }
+}
+
+/* CARGADOR DE BOTONES */
+
+/* FOOTER */
+
+.pie-pagina {
+    background-color: var(--color-principal);
+    color: var(--color-hover-texto);
+    padding: 60px 20px 30px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.contenedor-pie {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
+.columna {
+    flex: 1 1 250px;
+    max-width: 300px;
+    min-width: 220px;
+    box-sizing: border-box;
+}
+
+.titulo-columna {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--color-hover-texto);
+}
+
+.lista-enlaces {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-enlaces li {
+    margin-bottom: 10px;
+}
+
+.lista-enlaces a {
+    text-decoration: none;
+    color: var(--color-hover-texto);
+    transition: color 0.3s;
+}
+
+.lista-enlaces a:hover {
+    text-decoration: underline;
+}
+
+.iconos-redes a {
+    margin: 0 12px;
+    font-size: 1.6em;
+    color: var(--color-hover-texto);
+    transition: transform 0.3s, color 0.3s;
+}
+
+.iconos-redes a:hover {
+    transform: scale(1.1);
+    color: var(--color-hover-inverso-texto);
+}
+
+.barra-inferior {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    color: var(--color-hover-texto);
+    box-sizing: border-box;
+}
+
+.enlaces-legales {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.enlaces-legales a {
+    color: var(--color-hover-texto);
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.enlaces-legales a:hover {
+    text-decoration: underline;
+}
+
+.separador-legales {
+    color: var(--color-hover-texto);
+    margin: 0 8px;
+}
+
+@media (max-width: 1024px) {
+    .contenedor-pie {
+        gap: 30px;
+        padding: 0 15px;
+    }
+
+    .columna {
+        flex: 1 1 45%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .columna {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .contenedor-pie {
+        gap: 25px;
+    }
+
+    .titulo-columna {
+        font-size: 1.1em;
+    }
+
+    .iconos-redes a {
+        font-size: 1.4em;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pie-pagina {
+        padding: 50px 15px 25px;
+    }
+
+    .titulo-columna {
+        font-size: 1em;
+    }
+
+    .lista-enlaces a,
+    .enlaces-legales a {
+        font-size: 0.95em;
+    }
+
+    .iconos-redes a {
+        font-size: 1.3em;
+        margin: 0 8px;
+    }
+
+    .barra-inferior {
+        font-size: 0.85em;
+        padding-top: 20px;
+    }
+
+    .enlaces-legales {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .separador-legales {
+        display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .enlaces-legales {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .barra-inferior p {
+        font-size: 0.8em;
+        line-height: 1.4em;
+    }
+
+    .enlaces-legales a {
+        font-size: 0.9em;
+    }
+}
+
+/* FOOTER */

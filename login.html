@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Iniciar Sesion</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section class="contenedor-login">
+            <div class="login-mensaje-bienvenida">
+                <h1>👋 ¡Hola de nuevo!</h1>
+                <p class="subtitulo-bienvenida">🙏 Gracias por confiar en <strong>PsyConnects</strong></p>
+
+                <div class="explicacion-login">
+                    <p>- Solo pueden iniciar sesión <strong>Psicólogos Plus</strong> o <strong>Cuentas De
+                            Empresa</strong>.</p>
+                    <p>- En tu perfil podrás <strong>editar tu información</strong> y ver en detalle las
+                        <strong>interacciones</strong> que ocurren en tu espacio.
+                    </p>
+                    <p>- ¿Tienes inconvenientes para ingresar?<br>
+                        Escribinos a: <strong>cuentas@psyconnects.com</strong></p>
+                </div>
+            </div>
+
+            <div class="login-formulario">
+                <form class="formulario-inicio-sesion">
+                    <label for="correo" class="etiqueta-login">📧 Correo electrónico</label>
+                    <input type="email" id="correo" class="campo-login" required>
+
+                    <label for="contrasena" class="etiqueta-login">🔒 Contraseña</label>
+                    <div class="contenedor-contrasena">
+                        <input type="password" id="contrasena" class="campo-login" required>
+                        <button type="button" id="boton-visualizar" class="boton-ver-contrasena">👁️</button>
+                    </div>
+
+                    <button type="submit" class="boton-iniciar-sesion">🚀 Iniciar sesión</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web",
+            storageBucket: "psyconnects-web.firebasestorage.app",
+            messagingSenderId: "172678256167",
+            appId: "1:172678256167:web:a490df1ae64f551a9c2002"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.querySelector('.formulario-inicio-sesion').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("correo").value;
+            const password = document.getElementById("contrasena").value;
+
+            try {
+                const cred = await signInWithEmailAndPassword(auth, email, password);
+                const uid = cred.user.uid;
+
+                const docRef = doc(db, "usuarios_plus", uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    localStorage.setItem("usuarioPlus", JSON.stringify({ uid, ...docSnap.data() }));
+
+                    window.location.href = "perfil-personal.html";
+                } else {
+                    alert("No tienes una cuenta Plus registrada.");
+                }
+
+            } catch (error) {
+                console.error("Error al iniciar sesión:", error);
+                alert("Correo o contraseña incorrectos.");
+            }
+        });
+    </script>
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        function mostrarCargador() {
+            const fondo = document.getElementById('fondo-cargador');
+            const linea = document.getElementById('linea-carga');
+
+            fondo.style.opacity = '1';
+            fondo.style.pointerEvents = 'auto';
+            linea.style.width = '0%';
+
+            let progreso = 0;
+            const intervalo = setInterval(() => {
+                if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    setTimeout(() => {
+                        fondo.style.opacity = '0';
+                        fondo.style.pointerEvents = 'none';
+                    }, 300);
+                } else {
+                    progreso += 1;
+                    linea.style.width = progreso + '%';
+                }
+            }, 10);
+        }
+
+        window.addEventListener('load', mostrarCargador);
+
+        document.addEventListener('click', function (e) {
+            const tag = e.target.tagName.toLowerCase();
+            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
+                mostrarCargador();
+            }
+        });
+
+        const botonVer = document.getElementById('boton-visualizar');
+        const campoContrasena = document.getElementById('contrasena');
+
+        botonVer.addEventListener('click', () => {
+            const tipo = campoContrasena.type === 'password' ? 'text' : 'password';
+            campoContrasena.type = tipo;
+            botonVer.textContent = tipo === 'password' ? '👁️' : '🙈';
+        });
+
+    </script>
+
+</body>
+
+</html>

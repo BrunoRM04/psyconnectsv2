@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyConnects | Registro De Psicólogos</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <div class="barra-promocional">
+        <p class="mensaje-promocional">
+            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+        </p>
+    </div>
+
+    <header class="encabezado-principal">
+
+        <div class="contenedor-logo">
+            <a href="index.html"><img src="public/img/marca/logo cuatro.png" alt="Logo del sitio"
+                    class="logo-imagen"></a>
+        </div>
+        <div class="contenedor-iconos">
+            <a href="login.html"><i class='bx bx-user icono-cuenta'></i></a>
+            <i class='bx bx-menu icono-hamburguesa'></i>
+        </div>
+
+    </header>
+
+    <nav class="menu-desplegable" id="menuDesplegable">
+        <i class='bx bx-x icono-cerrar' id="cerrarMenu"></i>
+        <ul class="lista-navegacion">
+            <li><a href="index.html">🏠 Inicio</a></li>
+            <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
+            <li><a href="#">🧑‍💼 Para Empresas</a></li>
+            <li><a href="#">📞 Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section class="formulario-registro" id="seccion-paso-1">
+            <div class="contenedor-formulario">
+                <div class="pasos-registro">
+                    <span class="paso-registro activo">1</span>
+                    <span class="paso-registro">2</span>
+                    <span class="paso-registro">3</span>
+                    <span class="paso-registro">4</span>
+                    <span class="paso-registro">5</span>
+                </div>
+                <h2 class="titulo-formulario">Información Personal 👤</h2>
+                <form id="formulario-registro">
+                    <div class="grupo-campo">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="documento">Número de documento</label>
+                        <input type="text" id="documento" name="documento" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
+                    <div class="grupo-campo campo-password">
+                        <label for="contrasena">Contraseña</label>
+                        <div class="contenedor-password">
+                            <input type="password" id="contrasena" name="contrasena" required>
+                            <i class='bx bx-hide icono-password' id="icono-password"></i>
+                        </div>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="genero">Género con el que se identifica</label>
+                        <select id="genero" name="genero" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="otro">Otro</option>
+                            <option value="prefiero-no-decirlo">Prefiero no decirlo</option>
+                        </select>
+                    </div>
+                    <div class="navegacion-formulario">
+                        <button type="button" id="boton-siguiente"
+                            class="boton-formulario igual-ancho">Continuar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="formulario-registro" id="seccion-paso-2" style="display: none;">
+            <div class="contenedor-formulario">
+                <div class="pasos-registro">
+                    <span class="paso-registro">1</span>
+                    <span class="paso-registro activo">2</span>
+                    <span class="paso-registro">3</span>
+                    <span class="paso-registro">4</span>
+                    <span class="paso-registro">5</span>
+                </div>
+                <h2 class="titulo-formulario">Contacto 📞</h2>
+                <form id="formulario-contacto">
+                    <div class="grupo-campo">
+                        <label for="fecha-nacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="pais">País</label>
+                        <select id="pais" name="pais" required>
+                            <option value="" disabled selected>Seleccione su país</option>
+                            <option value="uruguay">Uruguay</option>
+                            <option value="argentina">Argentina</option>
+                            <option value="brasil">Brasil</option>
+                            <option value="chile">Chile</option>
+                            <option value="paraguay">Paraguay</option>
+                            <option value="peru">Perú</option>
+                            <option value="bolivia">Bolivia</option>
+                            <option value="ecuador">Ecuador</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="venezuela">Venezuela</option>
+                            <option value="mexico">México</option>
+                            <option value="panama">Panamá</option>
+                            <option value="costa-rica">Costa Rica</option>
+                            <option value="guatemala">Guatemala</option>
+                            <option value="el-salvador">El Salvador</option>
+                            <option value="honduras">Honduras</option>
+                            <option value="nicaragua">Nicaragua</option>
+                            <option value="republica-dominicana">República Dominicana</option>
+                        </select>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="telefono">Teléfono (con código de país)</label>
+                        <div class="campo-telefono">
+                            <span id="codigo-pais">+598</span>
+                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 91234567">
+                        </div>
+                    </div>
+                    <div class="navegacion-formulario">
+                        <button type="button" id="volver-paso-1" class="boton-formulario igual-ancho">← Volver</button>
+                        <button type="button" id="boton-siguiente-2" class="boton-formulario igual-ancho">Siguiente
+                            →</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="formulario-registro" id="seccion-paso-3" style="display: none;">
+            <div class="contenedor-formulario">
+                <div class="pasos-registro">
+                    <span class="paso-registro">1</span>
+                    <span class="paso-registro">2</span>
+                    <span class="paso-registro activo">3</span>
+                    <span class="paso-registro">4</span>
+                    <span class="paso-registro">5</span>
+                </div>
+                <h2 class="titulo-formulario">Perfil Profesional 💼</h2>
+                <form id="formulario-perfil">
+                    <div class="grupo-campo">
+                        <label for="experiencia">Años de experiencia</label>
+                        <input type="number" id="experiencia" name="experiencia" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="foto-perfil">Foto de perfil</label>
+                        <input type="file" id="foto-perfil" accept="image/*" required>
+                        <small class="mensaje-foto">Recomendamos que subas una imagen donde tu rostro esté centrado y
+                            visible.</small>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="descripcion">Descripción personal / profesional</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                    </div>
+                    <div class="grupo-campo">
+                        <label>Experiencia profesional</label>
+                        <div id="contenedor-experiencia"></div>
+                        <button type="button" class="boton-secundario" onclick="agregarExperiencia()">+ Añadir
+                            experiencia</button>
+                    </div>
+                    <div class="grupo-campo">
+                        <label>Certificaciones</label>
+                        <div id="contenedor-certificaciones"></div>
+                        <button type="button" class="boton-secundario" onclick="agregarCertificacion()">+ Añadir
+                            certificación</button>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="precio">Precio por hora (USD)</label>
+                        <input type="number" id="precio" name="precio" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label>Modalidad de atención</label>
+                        <select id="modalidad" name="modalidad" required>
+                            <option value="" disabled selected>Seleccione una opción</option>
+                            <option value="online">Online</option>
+                            <option value="presencial">Presencial</option>
+                            <option value="hibrido">Híbrido</option>
+                        </select>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="video">Video de presentación (opcional)</label>
+                        <input type="url" id="video" name="video" placeholder="Link a YouTube u otro">
+                        <input type="file" id="video-archivo" accept="video/*">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="documentos">Documentos adjuntos (CV, matrícula, etc.)</label>
+                        <input type="file" id="documentos" multiple>
+                    </div>
+                    <div class="navegacion-formulario">
+                        <button type="button" id="volver-paso-2" class="boton-formulario igual-ancho">← Volver</button>
+                        <button type="button" id="boton-siguiente-3" class="boton-formulario igual-ancho">Siguiente
+                            →</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="formulario-registro" id="seccion-paso-4" style="display: none;">
+            <div class="contenedor-formulario">
+                <div class="pasos-registro">
+                    <span class="paso-registro">1</span>
+                    <span class="paso-registro">2</span>
+                    <span class="paso-registro">3</span>
+                    <span class="paso-registro activo">4</span>
+                    <span class="paso-registro">5</span>
+                </div>
+
+                <h2 class="titulo-formulario">Especialidades 🧠</h2>
+
+                <form id="formulario-especialidades">
+                    <div class="grupo-campo">
+                        <label>Selecciona hasta 3 tipos de terapia</label>
+                        <div class="contenedor-opciones" id="terapias">
+                            <button type="button" class="opcion" data-grupo="terapia">Cognitivo-conductual</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Psicoanálisis</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Humanista</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Gestalt</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Sistémica</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Narrativa</button>
+                            <button type="button" class="opcion" data-grupo="terapia">Mindfulness</button>
+                            <button type="button" class="opcion" data-grupo="terapia">EMDR</button>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>Idiomas hablados</label>
+                        <div class="contenedor-opciones" id="idiomas">
+                            <button type="button" class="opcion" data-grupo="idioma">Español</button>
+                            <button type="button" class="opcion" data-grupo="idioma">Inglés</button>
+                            <button type="button" class="opcion" data-grupo="idioma">Chino</button>
+                            <button type="button" class="opcion" data-grupo="idioma">Hindi</button>
+                            <button type="button" class="opcion" data-grupo="idioma">Árabe</button>
+                            <button type="button" class="opcion" data-grupo="idioma">Francés</button>
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label>Especialización o área de enfoque</label>
+                        <div class="contenedor-opciones" id="enfoques">
+                            <button type="button" class="opcion" data-grupo="enfoque">Ansiedad</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Depresión</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Duelo</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Autoestima</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Estrés</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Fobias</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Trauma</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Adicciones</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Pareja</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Infanto-juvenil</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Sexualidad</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Trastornos alimenticios</button>
+                            <button type="button" class="opcion" data-grupo="enfoque">Neurodivergencias</button>
+                        </div>
+                    </div>
+
+                    <div class="navegacion-formulario">
+                        <button type="button" id="volver-paso-3" class="boton-formulario igual-ancho">← Volver</button>
+                        <button type="button" id="boton-siguiente-4" class="boton-formulario igual-ancho">Siguiente
+                            →</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="formulario-registro" id="seccion-paso-5" style="display: none;">
+            <div class="contenedor-formulario">
+                <div class="pasos-registro">
+                    <span class="paso-registro">1</span>
+                    <span class="paso-registro">2</span>
+                    <span class="paso-registro">3</span>
+                    <span class="paso-registro">4</span>
+                    <span class="paso-registro activo">5</span>
+                </div>
+
+                <h2 class="titulo-formulario">Redes Sociales 🌐</h2>
+
+                <form id="formulario-redes">
+                    <div class="grupo-campo">
+                        <label for="instagram">Instagram</label>
+                        <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/usuario">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="facebook">Facebook</label>
+                        <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/usuario">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="linkedin">LinkedIn</label>
+                        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/usuario">
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="tiktok">TikTok</label>
+                        <input type="url" id="tiktok" name="tiktok" placeholder="https://tiktok.com/@usuario">
+                    </div>
+
+                    <div class="navegacion-formulario">
+                        <button type="button" id="volver-paso-4" class="boton-formulario igual-ancho">← Volver</button>
+                        <button type="submit" class="boton-formulario igual-ancho">Finalizar ✅</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <div class="fondo-cargador" id="fondo-cargador">
+            <div class="contenedor-barra-carga">
+                <span class="porcentaje-blanco">0%</span>
+                <div class="linea-carga-contenedor">
+                    <div class="linea-carga" id="linea-carga"></div>
+                </div>
+                <span class="porcentaje-blanco">100%</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pie-pagina">
+
+        <div class="contenedor-pie">
+            <div class="columna sobre-nosotros">
+                <h3 class="titulo-columna">Sobre nosotros</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">¿Quiénes somos?</a></li>
+                    <li><a href="#">Misión y visión</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Trabaja con nosotros</a></li>
+                </ul>
+            </div>
+
+            <div class="columna navegacion">
+                <h3 class="titulo-columna">Navegación</h3>
+                <ul class="lista-enlaces">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Psicólogos</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Registro / Login</a></li>
+                </ul>
+            </div>
+
+            <div class="columna contacto-redes">
+                <h3 class="titulo-columna">Redes sociales</h3>
+                <div class="iconos-redes">
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="barra-inferior">
+            <p>© 2025 PsyConnects. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Cookies</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Accesibilidad</a>
+                <span class="separador-legales">|</span>
+                <a href="#">Aviso legal</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import {
+            getStorage,
+            ref,
+            uploadBytes,
+            getDownloadURL
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web",
+            storageBucket: "psyconnects-web.firebasestorage.app",
+            messagingSenderId: "172678256167",
+            appId: "1:172678256167:web:a490df1ae64f551a9c2002"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.getElementById('formulario-redes').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("correo").value;
+            const password = document.getElementById("contrasena").value;
+
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                const uid = cred.user.uid;
+
+                const datos = {
+                    tipo: "plus",
+                    nombre: document.getElementById("nombre").value,
+                    apellido: document.getElementById("apellido").value,
+                    documento: document.getElementById("documento").value,
+                    correo: email,
+                    genero: document.getElementById("genero").value,
+                    fechaNacimiento: document.getElementById("fecha-nacimiento").value,
+                    pais: document.getElementById("pais").value,
+                    telefono: document.getElementById("telefono").value,
+                    experiencia: document.getElementById("experiencia").value,
+                    descripcion: document.getElementById("descripcion").value,
+                    precio: document.getElementById("precio").value,
+                    modalidad: document.getElementById("modalidad").value,
+                    videoLink: document.getElementById("video").value,
+                    terapias: obtenerSeleccionados("terapia"),
+                    idiomas: obtenerSeleccionados("idioma"),
+                    enfoques: obtenerSeleccionados("enfoque"),
+                    instagram: document.getElementById("instagram").value,
+                    facebook: document.getElementById("facebook").value,
+                    linkedin: document.getElementById("linkedin").value,
+                    tiktok: document.getElementById("tiktok").value
+                };
+
+                const foto = document.getElementById("foto-perfil").files[0];
+                if (foto) {
+                    const fotoRef = ref(storage, `usuarios-free/${uid}/perfil.jpg`);
+                    await uploadBytes(fotoRef, foto);
+                    datos.fotoPerfilURL = await getDownloadURL(fotoRef);
+                }
+
+                const archivos = document.getElementById("documentos").files;
+                const urls = [];
+                for (let i = 0; i < archivos.length; i++) {
+                    const docRef = ref(storage, `usuarios-plus/${uid}/documento-${i}`);
+                    await uploadBytes(docRef, archivos[i]);
+                    urls.push(await getDownloadURL(docRef));
+                }
+                datos.documentosAdjuntos = urls;
+
+                const videoArchivo = document.getElementById("video-archivo").files[0];
+                if (videoArchivo) {
+                    const videoRef = ref(storage, `usuarios-plus/${uid}/video-presentacion.mp4`);
+                    await uploadBytes(videoRef, videoArchivo);
+                    datos.videoArchivoURL = await getDownloadURL(videoRef);
+                }
+
+                const experiencias = Array.from(document.querySelectorAll('#contenedor-experiencia .item-dinamico')).map((item) => {
+                    const inputs = item.querySelectorAll('input');
+                    return {
+                        lugar: inputs[0]?.value || '',
+                        periodo: inputs[1]?.value || '',
+                        tareas: inputs[2]?.value || '',
+                        actualmente: inputs[3]?.checked || false
+                    };
+                });
+                datos.experienciaProfesional = experiencias;
+
+                const certificaciones = Array.from(document.querySelectorAll('#contenedor-certificaciones .item-dinamico')).map((item) => {
+                    const inputs = item.querySelectorAll('input');
+                    return {
+                        nombre: inputs[0]?.value || '',
+                        inicio: inputs[1]?.value || '',
+                        fin: inputs[2]?.value || ''
+                    };
+                });
+                datos.certificaciones = certificaciones;
+
+                await setDoc(doc(db, "usuarios_plus", uid), datos);
+
+                alert("¡Registro completado con éxito!");
+                window.location.href = "https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-97227663BM226792KNANJS7Q";
+            } catch (err) {
+                console.error("Error al registrar usuario:", err);
+                alert("Hubo un error. Revisa la consola.");
+            }
+        });
+
+        function obtenerSeleccionados(grupo) {
+            return Array.from(
+                document.querySelectorAll(`.opcion[data-grupo="${grupo}"].activa`)
+            ).map((el) => el.textContent.trim());
+        }
+    </script>
+
+    <script>
+
+        const menu = document.getElementById('menuDesplegable');
+        const abrir = document.querySelector('.icono-hamburguesa');
+        const cerrar = document.getElementById('cerrarMenu');
+
+        abrir.addEventListener('click', () => {
+            menu.classList.add('activo');
+        });
+
+        cerrar.addEventListener('click', () => {
+            menu.classList.remove('activo');
+        });
+
+        let posicionX = 50;
+        let posicionY = 50;
+
+        function mostrarPaso(numero) {
+            const secciones = document.querySelectorAll('.formulario-registro');
+            secciones.forEach((seccion, index) => {
+                seccion.style.display = (index === numero - 1) ? 'flex' : 'none';
+            });
+        }
+
+        const iconoPassword = document.getElementById('icono-password');
+        if (iconoPassword) {
+            iconoPassword.addEventListener('click', function () {
+                const input = document.getElementById('contrasena');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    iconoPassword.classList.remove('bx-hide');
+                    iconoPassword.classList.add('bx-show');
+                } else {
+                    input.type = 'password';
+                    iconoPassword.classList.remove('bx-show');
+                    iconoPassword.classList.add('bx-hide');
+                }
+            });
+        }
+
+        const codigosPorPais = {
+            'uruguay': '+598', 'argentina': '+54', 'brasil': '+55', 'chile': '+56',
+            'paraguay': '+595', 'peru': '+51', 'bolivia': '+591', 'ecuador': '+593',
+            'colombia': '+57', 'venezuela': '+58', 'mexico': '+52', 'panama': '+507',
+            'costa-rica': '+506', 'guatemala': '+502', 'el-salvador': '+503',
+            'honduras': '+504', 'nicaragua': '+505', 'republica-dominicana': '+1'
+        };
+
+        const selectPais = document.getElementById('pais');
+        if (selectPais) {
+            selectPais.addEventListener('change', function () {
+                const paisSeleccionado = this.value;
+                const codigo = codigosPorPais[paisSeleccionado] || '';
+                document.getElementById('codigo-pais').textContent = codigo;
+            });
+        }
+
+        document.getElementById('boton-siguiente')?.addEventListener('click', () => mostrarPaso(2));
+        document.getElementById('volver-paso-1')?.addEventListener('click', () => mostrarPaso(1));
+        document.getElementById('boton-siguiente-2')?.addEventListener('click', () => mostrarPaso(3));
+        document.getElementById('volver-paso-2')?.addEventListener('click', () => mostrarPaso(2));
+        document.getElementById('boton-siguiente-3')?.addEventListener('click', () => mostrarPaso(4));
+        document.getElementById('volver-paso-3')?.addEventListener('click', () => mostrarPaso(3));
+        document.getElementById('boton-siguiente-4')?.addEventListener('click', () => mostrarPaso(5));
+        document.getElementById('volver-paso-4')?.addEventListener('click', () => mostrarPaso(4));
+
+        function moverFoto(direccion) {
+            if (direccion === 'arriba') posicionY -= 5;
+            if (direccion === 'abajo') posicionY += 5;
+            if (direccion === 'izquierda') posicionX -= 5;
+            if (direccion === 'derecha') posicionX += 5;
+            actualizarPosicion();
+        }
+
+        function actualizarPosicion() {
+            const preview = document.getElementById('preview-imagen');
+            preview.style.backgroundPosition = `${posicionX}% ${posicionY}%`;
+        }
+
+        function agregarExperiencia() {
+            const contenedor = document.getElementById('contenedor-experiencia');
+            const ultimosInputs = contenedor.querySelectorAll('.item-dinamico:last-child input');
+            let vacio = false;
+            ultimosInputs?.forEach(input => {
+                if (!input.value.trim()) vacio = true;
+            });
+            if (vacio) return alert("Completa el campo anterior antes de agregar uno nuevo.");
+
+            const div = document.createElement('div');
+            div.className = 'item-dinamico';
+            div.innerHTML = `
+        <input type="text" placeholder="Lugar" required>
+        <input type="text" placeholder="Años (Ej: 2020-2023)" required>
+        <input type="text" placeholder="Tareas realizadas" required>
+        <label><input type="checkbox"> Actualmente trabajo aquí</label>
+        <button type="button" class="boton-eliminar" onclick="this.parentElement.remove()">×</button>
+    `;
+            contenedor.appendChild(div);
+        }
+
+        function agregarCertificacion() {
+            const contenedor = document.getElementById('contenedor-certificaciones');
+            const ultimosInputs = contenedor.querySelectorAll('.item-dinamico:last-child input');
+            let vacio = false;
+            ultimosInputs?.forEach(input => {
+                if (!input.value.trim()) vacio = true;
+            });
+            if (vacio) return alert("Completa la certificación anterior antes de agregar una nueva.");
+
+            const div = document.createElement('div');
+            div.className = 'item-dinamico';
+            div.innerHTML = `
+        <input type="text" placeholder="Nombre de la certificación" required>
+        <input type="text" placeholder="Año de inicio" required>
+        <input type="text" placeholder="Año de finalización" required>
+        <button type="button" class="boton-eliminar" onclick="this.parentElement.remove()">×</button>
+    `;
+            contenedor.appendChild(div);
+        }
+
+        function limitarSeleccion(grupo, maximo) {
+            const botones = document.querySelectorAll(`.opcion[data-grupo="${grupo}"]`);
+            botones.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('activa');
+                    const activos = Array.from(botones).filter(b => b.classList.contains('activa'));
+                    if (activos.length > maximo) {
+                        btn.classList.remove('activa');
+                    }
+                });
+            });
+        }
+
+        limitarSeleccion('terapia', 3);
+        limitarSeleccion('idioma', 6);
+        limitarSeleccion('enfoque', 5);
+
+        document.getElementById('formulario-redes')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const camposRequeridos = [
+                'nombre', 'apellido', 'documento',
+                'correo', 'contrasena', 'genero',
+                'fecha-nacimiento', 'pais', 'telefono',
+                'experiencia', 'descripcion', 'precio', 'modalidad'
+            ];
+
+            for (let campo of camposRequeridos) {
+                const el = document.getElementById(campo);
+                if (!el || !el.value.trim()) {
+                    alert("Por favor completa todos los pasos antes de finalizar el registro.");
+                    mostrarPaso(1);
+                    return;
+                }
+            }
+
+            alert('¡Registro finalizado con éxito!');
+        });
+
+        const imagen = document.getElementById("imagen-perfil");
+        const contenedor = document.getElementById("contenedor-preview");
+        const input = document.getElementById("foto-perfil");
+
+        let isDragging = false;
+        let startX, startY, currentX = 0, currentY = 0;
+
+        input.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    imagen.src = event.target.result;
+                    imagen.style.top = "0px";
+                    imagen.style.left = "0px";
+                    currentX = 0;
+                    currentY = 0;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        contenedor.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            imagen.style.cursor = "grabbing";
+        });
+
+        contenedor.addEventListener("touchstart", (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX - currentX;
+            startY = e.touches[0].clientY - currentY;
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            currentX = e.clientX - startX;
+            currentY = e.clientY - startY;
+            imagen.style.left = `${currentX}px`;
+            imagen.style.top = `${currentY}px`;
+        });
+
+        window.addEventListener("touchmove", (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX - startX;
+            currentY = e.touches[0].clientY - startY;
+            imagen.style.left = `${currentX}px`;
+            imagen.style.top = `${currentY}px`;
+        });
+
+        window.addEventListener("mouseup", () => {
+            isDragging = false;
+            imagen.style.cursor = "grab";
+        });
+
+        window.addEventListener("touchend", () => {
+            isDragging = false;
+        });
+
+        const zoomControl = document.getElementById('zoom-foto');
+
+        zoomControl?.addEventListener('input', () => {
+            const zoom = parseFloat(zoomControl.value);
+            imagen.style.transform = `scale(${zoom})`;
+        });
+
+    </script>
+
+</body>
+
+</html>
