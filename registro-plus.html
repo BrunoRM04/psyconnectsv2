@@ -499,7 +499,6 @@
 
                 await setDoc(doc(db, "usuarios_plus", uid), datos);
 
-                alert("¡Registro completado con éxito!");
                 window.location.href = "https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-97227663BM226792KNANJS7Q";
             } catch (err) {
                 console.error("Error al registrar usuario:", err);
@@ -670,7 +669,6 @@
                 }
             }
 
-            alert('¡Registro finalizado con éxito!');
         });
 
         const imagen = document.getElementById("imagen-perfil");

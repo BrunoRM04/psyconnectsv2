@@ -170,7 +170,8 @@
                     <div class="grupo-campo">
                         <label for="foto-perfil">Foto de perfil</label>
                         <input type="file" id="foto-perfil" accept="image/*" required>
-                        <small class="mensaje-foto">Recomendamos que subas una imagen donde tu rostro esté centrado y visible.</small>
+                        <small class="mensaje-foto">Recomendamos que subas una imagen donde tu rostro esté centrado y
+                            visible.</small>
                     </div>
                     <div class="grupo-campo">
                         <label for="descripcion">Descripción personal / profesional</label>
@@ -337,6 +338,14 @@
             </div>
         </div>
 
+        <section id="pantalla-registro-exitoso" class="pantalla-registro-exitoso ocultar-pantalla-exito">
+            <div class="contenedor-mensaje-registro-exitoso">
+                <h1 id="titulo-registro-exitoso" class="titulo-registro-exitoso">¡Muchas gracias!</h1>
+                <p class="parrafo-registro-exitoso">Tu cuenta ya está disponible en PsyConnects 🎉</p>
+                <button class="boton-cerrar-exito" id="boton-cerrar-exito">Haz clic para continuar</button>
+            </div>
+        </section>
+
     </main>
 
     <footer class="pie-pagina">
@@ -498,11 +507,22 @@
 
                 await setDoc(doc(db, "usuarios_free", uid), datos);
 
-                alert("¡Registro completado con éxito!");
+                const nombre = document.getElementById("nombre").value;
+                const apellido = document.getElementById("apellido").value;
+                document.getElementById("titulo-registro-exitoso").textContent = `¡Muchas gracias ${nombre} ${apellido}!`;
+                document.getElementById("pantalla-registro-exitoso").classList.remove("ocultar-pantalla-exito");
+
+                document.querySelectorAll('.formulario-registro').forEach(seccion => {
+                    seccion.style.display = 'none';
+                });
             } catch (err) {
                 console.error("Error al registrar usuario:", err);
                 alert("Hubo un error. Revisa la consola.");
             }
+
+            document.getElementById("boton-cerrar-exito").addEventListener("click", () => {
+                window.location.href = "psicologos-disponibles.html";
+            });
         });
 
         function obtenerSeleccionados(grupo) {
@@ -667,8 +687,6 @@
                     return;
                 }
             }
-
-            alert('¡Registro finalizado con éxito!');
         });
 
         const imagen = document.getElementById("imagen-perfil");

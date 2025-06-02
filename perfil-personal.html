@@ -237,7 +237,6 @@
 
                     <form id="formulario-especialidades">
 
-                        <!-- Terapias -->
                         <div class="grupo-campo-especialidades">
                             <label>Selecciona hasta 3 tipos de terapia</label>
                             <div class="contenedor-opciones-especialidades" id="terapias">
@@ -258,7 +257,6 @@
                             </div>
                         </div>
 
-                        <!-- Idiomas -->
                         <div class="grupo-campo-especialidades">
                             <label>Idiomas hablados</label>
                             <div class="contenedor-opciones-especialidades" id="idiomas">
@@ -271,7 +269,6 @@
                             </div>
                         </div>
 
-                        <!-- Enfoques -->
                         <div class="grupo-campo-especialidades">
                             <label>Especialización o área de enfoque</label>
                             <div class="contenedor-opciones-especialidades" id="enfoques">
@@ -394,6 +391,9 @@
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+        import { deleteUser } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { deleteDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { deleteObject, listAll } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
@@ -410,7 +410,53 @@
         const storage = getStorage(app);
         let uid = null;
 
-        // Navegación entre pasos
+        async function eliminarArchivosUsuario(uid) {
+            const carpetas = [
+                `fotos-perfil/${uid}`,
+                `videos-presentacion/${uid}`,
+                `documentos-adjuntos/${uid}`
+            ];
+
+            for (const carpeta of carpetas) {
+                const folderRef = ref(storage, carpeta);
+                try {
+                    const lista = await listAll(folderRef);
+                    for (const item of lista.items) {
+                        await deleteObject(item);
+                    }
+                } catch (error) {
+                    console.warn("No se pudo eliminar carpeta o estaba vacía:", carpeta);
+                }
+            }
+        }
+
+        document.querySelector(".boton-eliminar-perfil").addEventListener("click", async () => {
+            const confirmar = confirm("¿Estás seguro de que querés eliminar tu perfil? Esta acción es irreversible.");
+            if (!confirmar) return;
+
+            const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
+            if (!usuario || !usuario.uid) {
+                alert("No se detectó el usuario. Por favor, inicia sesión.");
+                return;
+            }
+
+            try {
+                await eliminarArchivosUsuario(usuario.uid); 
+                await deleteDoc(doc(db, "usuarios_plus", usuario.uid));
+
+                const user = auth.currentUser;
+                if (user) await deleteUser(user);
+
+                localStorage.removeItem("usuarioPlus"); 
+
+                alert("✅ Perfil eliminado correctamente.");
+                window.location.href = "index.html"; 
+            } catch (error) {
+                console.error("Error al eliminar el perfil:", error);
+                alert("❌ Hubo un error al eliminar tu perfil. Intentalo nuevamente.");
+            }
+        });
+
         const botonesPasos = document.querySelectorAll('.boton-paso-edicion');
         const secciones = document.querySelectorAll(
             '.zona-edicion-fondo, .zona-edicion-informacion-personal-fondo, .zona-edicion-contacto-fondo, .zona-edicion-perfil-profesional-fondo, .zona-edicion-especialidades-fondo, .zona-edicion-redes-sociales-fondo'
@@ -425,7 +471,6 @@
             });
         });
 
-        // Agregar experiencia profesional
         window.agregarExperiencia = function () {
             const contenedor = document.getElementById('contenedor-experiencia');
             const div = document.createElement('div');
@@ -440,7 +485,6 @@
       <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar experiencia</button>
     `;
 
-            // Activar botón toggle luego de insertarlo
             contenedor.appendChild(div);
             const toggle = div.querySelector('.boton-toggle-actualmente');
             toggle.addEventListener('click', () => {
@@ -451,7 +495,6 @@
             });
         };
 
-        // Agregar certificación
         window.agregarCertificacion = function () {
             const contenedor = document.getElementById('contenedor-certificaciones');
             const div = document.createElement('div');
@@ -470,13 +513,11 @@
                 const grupo = boton.getAttribute('data-grupo');
                 const seleccionadas = document.querySelectorAll(`.opcion-especialidad[data-grupo="${grupo}"].seleccionada`);
 
-                // Si ya está seleccionada, deseleccionamos
                 if (boton.classList.contains('seleccionada')) {
                     boton.classList.remove('seleccionada');
                     return;
                 }
 
-                // Si hay menos de 3 seleccionadas, permitimos seleccionar
                 if (seleccionadas.length < 3) {
                     boton.classList.add('seleccionada');
                 } else {
@@ -486,147 +527,221 @@
         });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const codigosPorPais = {
-        'uruguay': '+598', 'argentina': '+54', 'brasil': '+55', 'chile': '+56',
-        'paraguay': '+595', 'peru': '+51', 'bolivia': '+591', 'ecuador': '+593',
-        'colombia': '+57', 'venezuela': '+58', 'mexico': '+52', 'panama': '+507',
-        'costa-rica': '+506', 'guatemala': '+502', 'el-salvador': '+503',
-        'honduras': '+504', 'nicaragua': '+505', 'republica-dominicana': '+1'
-    };
+        document.addEventListener('DOMContentLoaded', () => {
+            const codigosPorPais = {
+                'uruguay': '+598', 'argentina': '+54', 'brasil': '+55', 'chile': '+56',
+                'paraguay': '+595', 'peru': '+51', 'bolivia': '+591', 'ecuador': '+593',
+                'colombia': '+57', 'venezuela': '+58', 'mexico': '+52', 'panama': '+507',
+                'costa-rica': '+506', 'guatemala': '+502', 'el-salvador': '+503',
+                'honduras': '+504', 'nicaragua': '+505', 'republica-dominicana': '+1'
+            };
 
-    const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
-    if (!usuario) {
-        alert("No se encontraron datos del usuario. Por favor, inicia sesión.");
-        window.location.href = "login.html";
-        return;
-    }
-
-    // Información Personal
-    document.getElementById('nombre').value = usuario.nombre || "";
-    document.getElementById('apellido').value = usuario.apellido || "";
-    document.getElementById('documento').value = usuario.documento || "";
-    document.getElementById('correo').value = usuario.correo || "";
-    document.getElementById('genero').value = usuario.genero || "";
-
-    // Contacto
-    document.getElementById('fecha-nacimiento').value = usuario.fechaNacimiento || "";
-    document.getElementById('pais').value = usuario.pais || "";
-    document.getElementById('telefono').value = usuario.telefono || "";
-
-    // Código de país dinámico
-    const codigoElemento = document.getElementById('codigo-pais');
-    const paisSelect = document.getElementById('pais');
-    const actualizarCodigoPais = () => {
-        const pais = paisSelect.value;
-        const codigo = codigosPorPais[pais] || '';
-        if (codigoElemento) codigoElemento.textContent = codigo;
-    };
-    actualizarCodigoPais();
-    paisSelect.addEventListener('change', actualizarCodigoPais);
-
-    // Perfil Profesional
-    document.getElementById('experiencia').value = usuario.experiencia || "";
-    document.getElementById('descripcion').value = usuario.descripcion || "";
-    document.getElementById('precio').value = usuario.precio || "";
-    document.getElementById('modalidad').value = usuario.modalidad || "";
-    document.getElementById('video').value = usuario.videoLink || "";
-
-    // Redes Sociales
-    document.getElementById('instagram').value = usuario.instagram || "";
-    document.getElementById('facebook').value = usuario.facebook || "";
-    document.getElementById('linkedin').value = usuario.linkedin || "";
-    document.getElementById('tiktok').value = usuario.tiktok || "";
-
-    // Foto de perfil (visual)
-    if (usuario.fotoPerfilURL) {
-        const img = document.createElement('img');
-        img.src = usuario.fotoPerfilURL;
-        img.alt = "Foto de perfil";
-        img.style.maxWidth = "150px";
-        const inputFoto = document.getElementById('foto-perfil');
-        inputFoto.insertAdjacentElement('beforebegin', img);
-    }
-
-    // Experiencia profesional
-    if (Array.isArray(usuario.experienciaProfesional)) {
-        usuario.experienciaProfesional.forEach(exp => {
-            agregarExperiencia();
-            const inputs = document.querySelectorAll('#contenedor-experiencia .item-experiencia-perfil:last-child input');
-            if (inputs.length >= 3) {
-                inputs[0].value = exp.lugar;
-                inputs[1].value = exp.periodo;
-                inputs[2].value = exp.tareas;
-                const toggle = document.querySelector('#contenedor-experiencia .boton-toggle-actualmente:last-child');
-                if (exp.actualmente && toggle) toggle.click();
+            const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
+            if (!usuario) {
+                alert("No se encontraron datos del usuario. Por favor, inicia sesión.");
+                window.location.href = "login.html";
+                return;
             }
-        });
-    }
 
-    // Certificaciones
-    if (Array.isArray(usuario.certificaciones)) {
-        usuario.certificaciones.forEach(cert => {
-            agregarCertificacion();
-            const inputs = document.querySelectorAll('#contenedor-certificaciones .item-certificacion-perfil:last-child input');
-            if (inputs.length >= 3) {
-                inputs[0].value = cert.nombre;
-                inputs[1].value = cert.inicio;
-                inputs[2].value = cert.fin;
+            document.getElementById('nombre').value = usuario.nombre || "";
+            document.getElementById('apellido').value = usuario.apellido || "";
+            document.getElementById('documento').value = usuario.documento || "";
+            document.getElementById('correo').value = usuario.correo || "";
+            document.getElementById('genero').value = usuario.genero || "";
+
+            document.getElementById('fecha-nacimiento').value = usuario.fechaNacimiento || "";
+            document.getElementById('pais').value = usuario.pais || "";
+            document.getElementById('telefono').value = usuario.telefono || "";
+
+            const codigoElemento = document.getElementById('codigo-pais');
+            const paisSelect = document.getElementById('pais');
+            const actualizarCodigoPais = () => {
+                const pais = paisSelect.value;
+                const codigo = codigosPorPais[pais] || '';
+                if (codigoElemento) codigoElemento.textContent = codigo;
+            };
+            actualizarCodigoPais();
+            paisSelect.addEventListener('change', actualizarCodigoPais);
+
+            document.getElementById('experiencia').value = usuario.experiencia || "";
+            document.getElementById('descripcion').value = usuario.descripcion || "";
+            document.getElementById('precio').value = usuario.precio || "";
+            document.getElementById('modalidad').value = usuario.modalidad || "";
+            document.getElementById('video').value = usuario.videoLink || "";
+
+            document.getElementById('instagram').value = usuario.instagram || "";
+            document.getElementById('facebook').value = usuario.facebook || "";
+            document.getElementById('linkedin').value = usuario.linkedin || "";
+            document.getElementById('tiktok').value = usuario.tiktok || "";
+
+            if (usuario.fotoPerfilURL) {
+                const img = document.createElement('img');
+                img.src = usuario.fotoPerfilURL;
+                img.alt = "Foto de perfil";
+                img.style.maxWidth = "150px";
+                const inputFoto = document.getElementById('foto-perfil');
+                inputFoto.insertAdjacentElement('beforebegin', img);
             }
+
+            if (Array.isArray(usuario.experienciaProfesional)) {
+                usuario.experienciaProfesional.forEach(exp => {
+                    agregarExperiencia();
+                    const inputs = document.querySelectorAll('#contenedor-experiencia .item-experiencia-perfil:last-child input');
+                    if (inputs.length >= 3) {
+                        inputs[0].value = exp.lugar;
+                        inputs[1].value = exp.periodo;
+                        inputs[2].value = exp.tareas;
+                        const toggle = document.querySelector('#contenedor-experiencia .boton-toggle-actualmente:last-child');
+                        if (exp.actualmente && toggle) toggle.click();
+                    }
+                });
+            }
+
+            if (Array.isArray(usuario.certificaciones)) {
+                usuario.certificaciones.forEach(cert => {
+                    agregarCertificacion();
+                    const inputs = document.querySelectorAll('#contenedor-certificaciones .item-certificacion-perfil:last-child input');
+                    if (inputs.length >= 3) {
+                        inputs[0].value = cert.nombre;
+                        inputs[1].value = cert.inicio;
+                        inputs[2].value = cert.fin;
+                    }
+                });
+            }
+
+            if (Array.isArray(usuario.documentosAdjuntos)) {
+                mostrarArchivosConEliminar(usuario.documentosAdjuntos, "documentos-preview", "archivo");
+            }
+
+            if (usuario.videoArchivoURL) {
+                mostrarArchivosConEliminar([usuario.videoArchivoURL], "video-preview", "video");
+            }
+
+            marcarSeleccionados("terapia", usuario.terapias || []);
+            marcarSeleccionados("idioma", usuario.idiomas || []);
+            marcarSeleccionados("enfoque", usuario.enfoques || []);
         });
-    }
 
-    // Documentos adjuntos
-    if (Array.isArray(usuario.documentosAdjuntos)) {
-        mostrarArchivosConEliminar(usuario.documentosAdjuntos, "documentos-preview", "archivo");
-    }
+        function marcarSeleccionados(grupo, lista) {
+            lista.forEach(valor => {
+                const boton = Array.from(document.querySelectorAll(`.opcion-especialidad[data-grupo="${grupo}"]`))
+                    .find(btn => btn.textContent.trim().toLowerCase() === valor.toLowerCase());
+                if (boton) boton.classList.add('seleccionada');
+            });
+        }
 
-    // Video de presentación (archivo subido, no link)
-    if (usuario.videoArchivoURL) {
-        mostrarArchivosConEliminar([usuario.videoArchivoURL], "video-preview", "video");
-    }
+        function mostrarArchivosConEliminar(listaURLs, contenedorID, tipo = "archivo") {
+            const contenedor = document.getElementById(contenedorID);
+            contenedor.innerHTML = "";
 
-    // Especialidades
-    marcarSeleccionados("terapia", usuario.terapias || []);
-    marcarSeleccionados("idioma", usuario.idiomas || []);
-    marcarSeleccionados("enfoque", usuario.enfoques || []);
-});
+            listaURLs.forEach((url) => {
+                const bloque = document.createElement("div");
+                bloque.className = 'item-certificacion-perfil';
 
-// Marca opciones seleccionadas (especialidades, terapias, idiomas)
-function marcarSeleccionados(grupo, lista) {
-    lista.forEach(valor => {
-        const boton = Array.from(document.querySelectorAll(`.opcion-especialidad[data-grupo="${grupo}"]`))
-            .find(btn => btn.textContent.trim().toLowerCase() === valor.toLowerCase());
-        if (boton) boton.classList.add('seleccionada');
-    });
-}
-
-// Muestra archivos o videos con botón de eliminar
-function mostrarArchivosConEliminar(listaURLs, contenedorID, tipo = "archivo") {
-    const contenedor = document.getElementById(contenedorID);
-    contenedor.innerHTML = "";
-
-    listaURLs.forEach((url) => {
-        const bloque = document.createElement("div");
-        bloque.className = 'item-certificacion-perfil';
-
-        if (tipo === "video") {
-            bloque.innerHTML = `
+                if (tipo === "video") {
+                    bloque.innerHTML = `
                 <video controls width="100%" src="${url}"></video>
                 <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar video</button>
             `;
-        } else {
-            const nombreArchivo = decodeURIComponent(url.split("/").pop().split("?")[0]);
-            bloque.innerHTML = `
+                } else {
+                    const nombreArchivo = decodeURIComponent(url.split("/").pop().split("?")[0]);
+                    bloque.innerHTML = `
                 <p>📎 ${nombreArchivo}</p>
                 <a href="${url}" target="_blank">Ver documento</a><br>
                 <button type="button" class="boton-eliminar-bloque" onclick="this.parentElement.remove()">🗑️ Eliminar documento</button>
             `;
+                }
+
+                contenedor.appendChild(bloque);
+            });
         }
 
-        contenedor.appendChild(bloque);
-    });
-}
+        document.querySelector(".boton-guardar-cambios").addEventListener("click", async () => {
+            const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
+            if (!usuario || !usuario.uid) {
+                alert("No se detectó el usuario. Por favor, inicia sesión.");
+                return;
+            }
+
+            const usuarioRef = doc(db, "usuarios_plus", usuario.uid);
+
+            const experiencia = [...document.querySelectorAll('#contenedor-experiencia .item-experiencia-perfil')].map(div => ({
+                lugar: div.children[0].value,
+                periodo: div.children[1].value,
+                tareas: div.children[2].value,
+                actualmente: div.querySelector('.boton-toggle-actualmente')?.getAttribute('data-activo') === "true"
+            }));
+
+            const certificaciones = [...document.querySelectorAll('#contenedor-certificaciones .item-certificacion-perfil')].map(div => ({
+                nombre: div.children[0].value,
+                inicio: div.children[1].value,
+                fin: div.children[2].value
+            }));
+
+            const terapias = [...document.querySelectorAll('.opcion-especialidad[data-grupo="terapia"].seleccionada')].map(btn => btn.textContent.trim());
+            const idiomas = [...document.querySelectorAll('.opcion-especialidad[data-grupo="idioma"].seleccionada')].map(btn => btn.textContent.trim());
+            const enfoques = [...document.querySelectorAll('.opcion-especialidad[data-grupo="enfoque"].seleccionada')].map(btn => btn.textContent.trim());
+
+            const datosActualizados = {
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                documento: document.getElementById('documento').value,
+                correo: document.getElementById('correo').value,
+                genero: document.getElementById('genero').value,
+                fechaNacimiento: document.getElementById('fecha-nacimiento').value,
+                pais: document.getElementById('pais').value,
+                telefono: document.getElementById('telefono').value,
+                experiencia: document.getElementById('experiencia').value,
+                descripcion: document.getElementById('descripcion').value,
+                precio: document.getElementById('precio').value,
+                modalidad: document.getElementById('modalidad').value,
+                videoLink: document.getElementById('video').value,
+                instagram: document.getElementById('instagram').value,
+                facebook: document.getElementById('facebook').value,
+                linkedin: document.getElementById('linkedin').value,
+                tiktok: document.getElementById('tiktok').value,
+                experienciaProfesional: experiencia,
+                certificaciones,
+                terapias,
+                idiomas,
+                enfoques
+            };
+
+            const archivoFoto = document.getElementById('foto-perfil').files[0];
+            if (archivoFoto) {
+                const fotoRef = ref(storage, `fotos-perfil/${usuario.uid}`);
+                await uploadBytes(fotoRef, archivoFoto);
+                datosActualizados.fotoPerfilURL = await getDownloadURL(fotoRef);
+            }
+
+            const archivoVideo = document.getElementById('video-archivo').files[0];
+            if (archivoVideo) {
+                const videoRef = ref(storage, `videos-presentacion/${usuario.uid}`);
+                await uploadBytes(videoRef, archivoVideo);
+                datosActualizados.videoArchivoURL = await getDownloadURL(videoRef);
+            }
+
+            const archivosDocumentos = document.getElementById('documentos').files;
+            if (archivosDocumentos.length > 0) {
+                const urls = [];
+                for (let archivo of archivosDocumentos) {
+                    const docRef = ref(storage, `documentos-adjuntos/${usuario.uid}/${archivo.name}`);
+                    await uploadBytes(docRef, archivo);
+                    const url = await getDownloadURL(docRef);
+                    urls.push(url);
+                }
+                datosActualizados.documentosAdjuntos = urls;
+            }
+
+            try {
+                await updateDoc(usuarioRef, datosActualizados);
+                alert("✅ Cambios guardados correctamente.");
+            } catch (error) {
+                console.error("Error al guardar en Firestore:", error);
+                alert("❌ Hubo un error al guardar los cambios.");
+            }
+        });
+
     </script>
 
 
@@ -642,38 +757,6 @@ function mostrarArchivosConEliminar(listaURLs, contenedorID, tipo = "archivo") {
 
         cerrar.addEventListener('click', () => {
             menu.classList.remove('activo');
-        });
-
-        function mostrarCargador() {
-            const fondo = document.getElementById('fondo-cargador');
-            const linea = document.getElementById('linea-carga');
-
-            fondo.style.opacity = '1';
-            fondo.style.pointerEvents = 'auto';
-            linea.style.width = '0%';
-
-            let progreso = 0;
-            const intervalo = setInterval(() => {
-                if (progreso >= 100) {
-                    clearInterval(intervalo);
-                    setTimeout(() => {
-                        fondo.style.opacity = '0';
-                        fondo.style.pointerEvents = 'none';
-                    }, 300);
-                } else {
-                    progreso += 1;
-                    linea.style.width = progreso + '%';
-                }
-            }, 10);
-        }
-
-        window.addEventListener('load', mostrarCargador);
-
-        document.addEventListener('click', function (e) {
-            const tag = e.target.tagName.toLowerCase();
-            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
-                mostrarCargador();
-            }
         });
 
     </script>

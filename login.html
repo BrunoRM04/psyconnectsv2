@@ -77,6 +77,14 @@
             </div>
         </section>
 
+        <section id="pantalla-login-exitoso" class="pantalla-login-exitoso ocultar-pantalla-login">
+            <div class="contenedor-mensaje-login-exitoso">
+                <h1 id="titulo-login-exitoso" class="titulo-login-exitoso">¡Bienvenido/a!</h1>
+                <p class="parrafo-login-exitoso">Has ingresado correctamente a PsyConnects 🧠</p>
+                <button class="boton-cerrar-login" id="boton-cerrar-login">Entrar al perfil</button>
+            </div>
+        </section>
+
     </main>
 
     <footer class="pie-pagina">
@@ -166,7 +174,12 @@
                 if (docSnap.exists()) {
                     localStorage.setItem("usuarioPlus", JSON.stringify({ uid, ...docSnap.data() }));
 
-                    window.location.href = "perfil-personal.html";
+                    document.getElementById("pantalla-login-exitoso").classList.remove("ocultar-pantalla-login");
+                    document.querySelector(".contenedor-login").style.display = "none";
+
+                    document.getElementById("boton-cerrar-login").addEventListener("click", () => {
+                        window.location.href = "perfil-personal.html";
+                    });
                 } else {
                     alert("No tienes una cuenta Plus registrada.");
                 }
@@ -190,38 +203,6 @@
 
         cerrar.addEventListener('click', () => {
             menu.classList.remove('activo');
-        });
-
-        function mostrarCargador() {
-            const fondo = document.getElementById('fondo-cargador');
-            const linea = document.getElementById('linea-carga');
-
-            fondo.style.opacity = '1';
-            fondo.style.pointerEvents = 'auto';
-            linea.style.width = '0%';
-
-            let progreso = 0;
-            const intervalo = setInterval(() => {
-                if (progreso >= 100) {
-                    clearInterval(intervalo);
-                    setTimeout(() => {
-                        fondo.style.opacity = '0';
-                        fondo.style.pointerEvents = 'none';
-                    }, 300);
-                } else {
-                    progreso += 1;
-                    linea.style.width = progreso + '%';
-                }
-            }, 10);
-        }
-
-        window.addEventListener('load', mostrarCargador);
-
-        document.addEventListener('click', function (e) {
-            const tag = e.target.tagName.toLowerCase();
-            if (['a', 'button'].includes(tag) || e.target.closest('a') || e.target.closest('button')) {
-                mostrarCargador();
-            }
         });
 
         const botonVer = document.getElementById('boton-visualizar');

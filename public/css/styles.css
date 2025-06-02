@@ -862,7 +862,7 @@ body {
 .titulo-formulario {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: var(--color-principal);
+    color: var(--color-hover-fondo);
     font-size: 1.4rem;
 }
 
@@ -1464,7 +1464,6 @@ body {
     flex-direction: row;
     min-height: 100vh;
     background-color: var(--color-principal);
-    font-family: sans-serif;
     color: white;
 }
 
@@ -1652,22 +1651,7 @@ body {
 
 /* LOGIN */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* PERFIL PERSONAL - PSICOLOGOS PLUS */
 
 .barra-navegacion-edicion-perfil {
     width: 100%;
@@ -2237,28 +2221,89 @@ body {
     }
 }
 
+/* PERFIL PERSONAL - PSICOLOGOS PLUS */
 
+/* PERFILES PERSONALES - GENERALES */
 
+.seccion-bienvenida-perfil {
+    background-color: var(--color-principal);
+    padding: 60px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    min-height: 500px;
+}
 
+.contenido-bienvenida {
+    max-width: 600px;
+    flex: 1 1 500px;
+}
 
+.titulo-bienvenida {
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 
+.texto-bienvenida {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
 
+.imagen-bienvenida {
+    flex: 1 1 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
+.imagen-bienvenida img {
+    max-width: 100%;
+    height: auto;
+}
 
+@media (max-width: 768px) {
+    .seccion-bienvenida-perfil {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
 
+    .contenido-bienvenida {
+        flex: unset;
+        margin: 0 auto;
+    }
 
+    .titulo-bienvenida {
+        font-size: 2rem;
+    }
 
+    .texto-bienvenida {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
 
+    .imagen-bienvenida {
+        order: -1;
+        margin-bottom: -30px;
+        padding: 0;
+    }
 
-
-
-
-
-
+    .imagen-bienvenida img {
+        width: 100%;
+        max-width: 700px;
+    }
+}
 
 .perfil-seccion-principal {
     margin: 0 auto;
-    font-family: 'Segoe UI', sans-serif;
     color: var(--gris-texto);
     display: flex;
     min-height: 100vh;
@@ -2599,6 +2644,7 @@ body {
     background-color: var(--gris-suave);
 }
 
+/* PERFILES PERSONALES - GENERALES */
 
 
 
@@ -2635,158 +2681,127 @@ body {
 
 
 
+/* CARGAS DE PANTALLA DE REGISTRO Y LOGIN */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.seccion-bienvenida-perfil {
+.pantalla-registro-exitoso {
+    position: fixed;
+    inset: 0;
     background-color: var(--color-principal);
-    padding: 60px 5%;
+    color: var(--color-fondo);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-    min-height: 500px;
-}
-
-.contenido-bienvenida {
-    max-width: 600px;
-    flex: 1 1 500px;
-}
-
-.titulo-bienvenida {
-    font-size: 2.8rem;
-    color: white;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.texto-bienvenida {
-    font-size: 1.2rem;
-    color: white;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.imagen-bienvenida {
-    flex: 1 1 400px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 2rem;
+    flex-direction: column;
 }
 
-.imagen-bienvenida img {
-    max-width: 100%;
-    height: auto;
+.contenedor-mensaje-registro-exitoso {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.titulo-registro-exitoso {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.parrafo-registro-exitoso {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.boton-cerrar-exito {
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.ocultar-pantalla-exito {
+    display: none;
 }
 
 @media (max-width: 768px) {
-    .seccion-bienvenida-perfil {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 30px 20px;
-    }
-
-    .contenido-bienvenida {
-        flex: unset;
-        margin: 0 auto;
-    }
-
-    .titulo-bienvenida {
+    .titulo-registro-exitoso {
         font-size: 2rem;
     }
 
-    .texto-bienvenida {
+    .parrafo-registro-exitoso {
+        font-size: 1.2rem;
+    }
+
+    .boton-cerrar-exito {
         font-size: 1rem;
-        margin-bottom: 16px;
-    }
-
-    .imagen-bienvenida {
-        order: -1;
-        margin-bottom: -30px;
-        padding: 0;
-    }
-
-    .imagen-bienvenida img {
-        width: 100%;
-        max-width: 700px;
+        padding: 0.7rem 1.2rem;
     }
 }
 
+.pantalla-login-exitoso {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    text-align: center;
+    padding: 2rem;
+    flex-direction: column;
+}
 
+.contenedor-mensaje-login-exitoso {
+    max-width: 700px;
+    padding: 2rem;
+}
 
+.titulo-login-exitoso {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
 
+.parrafo-login-exitoso {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
 
+.boton-cerrar-login {
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
 
+.ocultar-pantalla-login {
+    display: none;
+}
 
+@media (max-width: 768px) {
+    .titulo-login-exitoso {
+        font-size: 2rem;
+    }
 
+    .parrafo-login-exitoso {
+        font-size: 1.2rem;
+    }
 
+    .boton-cerrar-login {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* CARGAS DE PANTALLA DE REGISTRO Y LOGIN */
 
 /* CARGADOR DE BOTONES */
 
