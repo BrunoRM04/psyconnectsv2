@@ -169,7 +169,10 @@
         import {
             getFirestore,
             collection,
-            getDocs
+            getDocs,
+            doc,
+            getDoc,
+            addDoc
         } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -203,6 +206,7 @@
                     const datos = doc.data();
                     if (datos.correo === correo) {
                         datos.tipoCuenta = nombre === "usuarios_plus" ? "plus" : "free"; // ⬅️ AÑADIDO CLAVE
+                        datos.uid = doc.id; // AÑADIDO
                         return datos;
                     }
                 }
@@ -272,35 +276,42 @@
 
             if (datos.tipoCuenta === "plus") {
                 boton.textContent = "Reservar Cita Ahora";
-                boton.onclick = () => {
-                    alert("Función de reserva aún no implementada.");
-                };
-            } else if (datos.tipoCuenta === "free") {
-                boton.textContent = "Consultar Disponibilidad";
-                boton.onclick = () => {
-                    alert("Este profesional tiene disponibilidad variable. Te recomendamos enviarle un mensaje.");
+                boton.onclick = async () => {
+                    try {
+                        const docRef = doc(db, "usuarios_plus", datos.uid);
+                        const docSnap = await getDoc(docRef);
+                        if (docSnap.exists()) {
+                            const horarios = docSnap.data().horariosDisponibles || [];
+                            iniciarReservaConDatos(horarios, datos.uid);
+                        } else {
+                            alert("No se encontró disponibilidad.");
+                        }
+                    } catch (error) {
+                        console.error("Error al obtener horarios:", error);
+                        alert("Hubo un error al cargar los horarios.");
+                    }
                 };
             }
 
             contenedorIzquierdo.appendChild(boton);
 
-        document.getElementById("perfil-foto-usuario").src = datos.fotoPerfilURL || "";
-        document.getElementById("perfil-nombre-completo").textContent = `${datos.nombre} ${datos.apellido}`;
-        document.getElementById("perfil-edad").textContent = `${calcularEdad(datos.fechaNacimiento)} años`;
-        document.getElementById("perfil-pais").textContent = datos.pais || "";
-        document.getElementById("perfil-genero").textContent = datos.genero || "";
-        document.getElementById("perfil-modalidad").textContent = datos.modalidad || "";
-        document.getElementById("perfil-precio").textContent = datos.precio || "";
-        document.getElementById("perfil-chips-terapias").innerHTML = crearChips(datos.terapias);
+            document.getElementById("perfil-foto-usuario").src = datos.fotoPerfilURL || "";
+            document.getElementById("perfil-nombre-completo").textContent = `${datos.nombre} ${datos.apellido}`;
+            document.getElementById("perfil-edad").textContent = `${calcularEdad(datos.fechaNacimiento)} años`;
+            document.getElementById("perfil-pais").textContent = datos.pais || "";
+            document.getElementById("perfil-genero").textContent = datos.genero || "";
+            document.getElementById("perfil-modalidad").textContent = datos.modalidad || "";
+            document.getElementById("perfil-precio").textContent = datos.precio || "";
+            document.getElementById("perfil-chips-terapias").innerHTML = crearChips(datos.terapias);
 
-        document.getElementById("perfil-descripcion").textContent = datos.descripcion || "";
-        document.getElementById("perfil-lista-experiencia").innerHTML = crearExperiencia(datos.experienciaProfesional);
-        document.getElementById("perfil-lista-certificaciones").innerHTML = crearCertificaciones(datos.certificaciones);
-        document.getElementById("perfil-chips-idiomas").innerHTML = crearChips(datos.idiomas);
-        document.getElementById("perfil-chips-enfoques").innerHTML = crearChips(datos.enfoques);
-        document.getElementById("perfil-contenedor-video").innerHTML = mostrarVideo(datos);
-        document.getElementById("perfil-contenedor-documentos").innerHTML = mostrarDocumentos(datos.documentosAdjuntos);
-        document.getElementById("perfil-redes-iconos").innerHTML = mostrarRedes(datos);
+            document.getElementById("perfil-descripcion").textContent = datos.descripcion || "";
+            document.getElementById("perfil-lista-experiencia").innerHTML = crearExperiencia(datos.experienciaProfesional);
+            document.getElementById("perfil-lista-certificaciones").innerHTML = crearCertificaciones(datos.certificaciones);
+            document.getElementById("perfil-chips-idiomas").innerHTML = crearChips(datos.idiomas);
+            document.getElementById("perfil-chips-enfoques").innerHTML = crearChips(datos.enfoques);
+            document.getElementById("perfil-contenedor-video").innerHTML = mostrarVideo(datos);
+            document.getElementById("perfil-contenedor-documentos").innerHTML = mostrarDocumentos(datos.documentosAdjuntos);
+            document.getElementById("perfil-redes-iconos").innerHTML = mostrarRedes(datos);
         }
 
         cargarPerfil();
@@ -317,6 +328,133 @@
         document.querySelectorAll('.perfil-aparecer').forEach(el => {
             observador.observe(el);
         });
+
+        function mostrarHorariosDisponiblesParaReserva(horarios, datosUsuario, uidPsicologo) {
+            const modal = document.createElement("div");
+            modal.className = "modal-disponibilidad-fondo";
+
+            const contenido = document.createElement("div");
+            contenido.className = "modal-disponibilidad-contenedor";
+
+            const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+                'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+            function formatear(h) {
+                const fecha = new Date(h.fecha);
+                return `${dias[fecha.getDay()]} ${fecha.getDate()} de ${meses[fecha.getMonth()]}, ${h.horaInicio} a ${h.horaFin}`;
+            }
+
+            contenido.innerHTML = `
+        <h3 class="modal-disponibilidad-titulo">Elegí un horario</h3>
+        <select id="selector-horario" class="selector-horario-disponible">
+            <option value="" disabled selected>Seleccioná una opción</option>
+            ${horarios.map((h, i) => `<option value="${i}">${formatear(h)}</option>`).join('')}
+        </select>
+        <div class="grupo-botones-reserva">
+            <button id="boton-confirmar-reserva" class="boton-reserva-disponible" disabled>Reservar ahora ✅</button>
+            <button id="cerrar-modal-final" class="boton-reserva-disponible">Cancelar</button>
+        </div>
+    `;
+
+            modal.appendChild(contenido);
+            document.body.appendChild(modal);
+
+            const selector = document.getElementById("selector-horario");
+            const botonConfirmar = document.getElementById("boton-confirmar-reserva");
+
+            selector.addEventListener("change", () => {
+                botonConfirmar.disabled = false;
+            });
+
+            botonConfirmar.addEventListener("click", async () => {
+                const seleccion = horarios[selector.value];
+                try {
+                    await addDoc(collection(db, "reservas"), {
+                        nombre: datosUsuario.nombre,
+                        telefono: datosUsuario.telefono,
+                        correo: datosUsuario.correo,
+                        pais: datosUsuario.pais,
+                        horario: seleccion,
+                        uidPsicologo: uidPsicologo,
+                        timestamp: new Date()
+                    });
+
+                    // Armar mensaje para WhatsApp
+                    const fecha = new Date(seleccion.fecha);
+                    const dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+                    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+                        'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+                    const diaTexto = `${dias[fecha.getDay()]} ${fecha.getDate()} de ${meses[fecha.getMonth()]}`;
+                    const mensaje = `¡Hola! Vi tu perfil en PsyConnects y me gustaría confirmar mi sesión el ${diaTexto} de ${seleccion.horaInicio} a ${seleccion.horaFin}.%0A%0AMi nombre es ${datosUsuario.nombre}, soy de ${datosUsuario.pais}.%0AMi número es ${datosUsuario.telefono} y mi correo es ${datosUsuario.correo}.%0A%0A¡Gracias!`;
+
+                    // Obtener número del psicólogo
+                    const psicologoDoc = await getDoc(doc(db, "usuarios_plus", uidPsicologo));
+                    const numeroWhatsApp = psicologoDoc.data().telefono?.replace(/\D/g, '');
+
+                    if (!numeroWhatsApp) {
+                        alert("✅ Reserva confirmada, pero no se encontró el número de WhatsApp del profesional.");
+                        modal.remove();
+                        return;
+                    }
+
+                    // Redirigir a WhatsApp
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+                    window.location.href = url;
+
+                } catch (error) {
+                    console.error("Error al guardar reserva:", error);
+                    alert("❌ Ocurrió un error al guardar tu reserva.");
+                }
+            });
+
+            document.getElementById("cerrar-modal-final").addEventListener("click", () => modal.remove());
+        }
+
+        function iniciarReservaConDatos(horarios, uidPsicologo) {
+            const modal = document.createElement("div");
+            modal.className = "modal-disponibilidad-fondo";
+
+            const contenido = document.createElement("div");
+            contenido.className = "modal-disponibilidad-contenedor";
+
+            contenido.innerHTML = `
+    <h3 class="modal-disponibilidad-titulo">¡Ya casi está lista tu reserva!</h3>
+    <p class="modal-disponibilidad-mensaje">* Como regalo de bienvenida, tu primera sesión será 100% gratuita.</p>
+    
+    <input type="text" id="nombre-reserva" class="input-modal-reserva" placeholder="Nombre y apellido" required>
+    <input type="tel" id="telefono-reserva" class="input-modal-reserva" placeholder="Teléfono" required>
+    <input type="email" id="correo-reserva" class="input-modal-reserva" placeholder="Correo electrónico" required>
+    <input type="text" id="pais-reserva" class="input-modal-reserva" placeholder="País" required>
+
+    <div class="grupo-botones-reserva">
+        <button id="boton-siguiente-reserva" class="boton-reserva-disponible">Siguiente ➡️</button>
+        <button id="cerrar-modal-inicial" class="boton-reserva-disponible">Cancelar</button>
+    </div>
+`;
+
+            modal.appendChild(contenido);
+            document.body.appendChild(modal);
+
+            document.getElementById("cerrar-modal-inicial").addEventListener("click", () => modal.remove());
+
+            document.getElementById("boton-siguiente-reserva").addEventListener("click", () => {
+                const nombre = document.getElementById("nombre-reserva").value.trim();
+                const telefono = document.getElementById("telefono-reserva").value.trim();
+                const correo = document.getElementById("correo-reserva").value.trim();
+                const pais = document.getElementById("pais-reserva").value.trim();
+
+                if (!nombre || !telefono || !correo || !pais) {
+                    alert("Por favor completá todos los campos.");
+                    return;
+                }
+
+                modal.remove();
+                mostrarHorariosDisponiblesParaReserva(horarios, { nombre, telefono, correo, pais }, uidPsicologo);
+            });
+        }
+
     </script>
 
     <script>

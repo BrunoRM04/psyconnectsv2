@@ -2689,54 +2689,184 @@ body {
 
 /* PERFILES PERSONALES - GENERALES */
 
+/* MODAL DE RESERVA */
 
+.modal-disponibilidad-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--color-principal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
 
+.modal-disponibilidad-contenedor {
+    background: var(--color-fondo);
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: var(--color-principal);
+}
 
+.modal-disponibilidad-titulo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
 
+.modal-disponibilidad-mensaje {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
 
+.selector-horario-disponible {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color-principal);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: var(--color-principal);
+    background-color: var(--color-fondo);
+}
 
+.grupo-botones-reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
 
+.boton-reserva-disponible {
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    padding: 12px;
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.boton-reserva-disponible:disabled {
+    background-color: var(--gris-texto);
+    cursor: not-allowed;
+}
 
+.input-modal-reserva {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid var(--color-principal);
+    font-size: 1rem;
+    color: var(--color-principal);
+    background-color: var(--color-fondo);
+}
 
+/* MODAL DE RESERVA */
 
+/* DISPONIBILIDAD DEL PSICÓOGO HORARIA */
 
+.titulo-general-disponibilidad {
+    font-size: 24px;
+    color: var(--color-principal);
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
 
+.parrafo-explicativo-disponibilidad {
+    text-align: center;
+    color: var(--color-principal);
+    margin-bottom: 30px;
+}
 
+.seccion-editar-disponibilidad {
+    border-radius: 12px;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    max-width: 700px;
+    margin: -20px auto;
+    margin-bottom: 40px;
+}
 
+.bloque-horario {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: center;
+    position: relative;
+}
 
+.campo-dia,
+.campo-hora-inicio,
+.campo-hora-fin {
+    border: 1px solid var(--color-principal);
+    border-radius: 6px;
+    padding: 6px;
+    background-color: var(--color-fondo);
+    color: var(--color-principal);
+    flex: 1;
+    min-width: 130px;
+}
 
+.boton-eliminar-horario {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--color-principal);
+    cursor: pointer;
+}
 
+.contenedor-botones-disponibilidad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
 
+.boton-agregar-horario,
+.boton-guardar-horario {
+    padding: 8px 16px;
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
 
+@media (max-width: 600px) {
+    .bloque-horario {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
+    .campo-dia,
+    .campo-hora-inicio,
+    .campo-hora-fin {
+        width: 100%;
+    }
 
+    .contenedor-botones-disponibilidad {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
+    .boton-agregar-horario,
+    .boton-guardar-horario {
+        width: 100%;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* DISPONIBILIDAD DEL PSICÓOGO HORARIA */
 
 
 

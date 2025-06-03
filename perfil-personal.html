@@ -351,6 +351,24 @@
             </div>
         </section>
 
+        <h2 class="titulo-general-disponibilidad">Disponibilidad horaria</h2>
+        <p class="parrafo-explicativo-disponibilidad">
+            Selecciona los días y horarios en los que estás disponible para recibir consultas.
+        </p>
+
+        <section class="seccion-editar-disponibilidad">
+            <div class="contenedor-bloques-horario" id="contenedor-bloques-horario">
+                <!-- Bloques horarios se insertan aquí -->
+            </div>
+
+            <div class="contenedor-botones-disponibilidad">
+                <button type="button" class="boton-agregar-horario" id="boton-agregar-horario">Agregar
+                    horario ➕</button>
+                <button type="button" class="boton-guardar-horario" id="boton-guardar-horario">Guardar horarios
+                    ✅</button>
+            </div>
+        </section>
+
     </main>
 
     <footer class="pie-pagina">
@@ -583,6 +601,7 @@
             }
 
             inicializarContadores(usuario.uid);
+            cargarHorariosGuardados(usuario.uid);
 
             document.getElementById('nombre').value = usuario.nombre || "";
             document.getElementById('apellido').value = usuario.apellido || "";
@@ -783,6 +802,134 @@
             }
         });
 
+        function obtenerProximosDias(cantidad) {
+            const opciones = [];
+            const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+                'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+            const hoy = new Date();
+
+            for (let i = 0; i < cantidad; i++) {
+                const fecha = new Date(hoy);
+                fecha.setDate(hoy.getDate() + i);
+
+                const diaNombre = diasSemana[fecha.getDay()];
+                const diaNumero = fecha.getDate();
+                const mesNombre = meses[fecha.getMonth()];
+
+                const texto = `${diaNombre} ${diaNumero} de ${mesNombre}`;
+                const valor = fecha.toISOString().split('T')[0];
+
+                opciones.push({ texto, valor });
+            }
+
+            return opciones;
+        }
+
+        function crearBloqueHorario() {
+            const div = document.createElement("div");
+            div.className = "bloque-horario";
+
+            const fechas = obtenerProximosDias(14);
+            const opcionesFecha = fechas.map(f => `<option value="${f.valor}">${f.texto}</option>`).join("");
+
+            div.innerHTML = `
+      <select class="campo-dia">
+        <option value="">Seleccionar fecha</option>
+        ${opcionesFecha}
+      </select>
+      <input type="time" class="campo-hora-inicio">
+      <input type="time" class="campo-hora-fin">
+      <button type="button" class="boton-eliminar-horario">✖</button>
+    `;
+
+            div.querySelector(".boton-eliminar-horario").addEventListener("click", () => {
+                div.remove();
+            });
+
+            document.getElementById("contenedor-bloques-horario").appendChild(div);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const botonAgregar = document.getElementById("boton-agregar-horario");
+            botonAgregar.addEventListener("click", crearBloqueHorario);
+            crearBloqueHorario();
+        });
+
+        document.getElementById("boton-guardar-horario").addEventListener("click", async () => {
+            const usuario = JSON.parse(localStorage.getItem("usuarioPlus"));
+            if (!usuario || !usuario.uid) {
+                alert("No se detectó el usuario. Por favor, inicia sesión.");
+                return;
+            }
+
+            const bloques = document.querySelectorAll(".bloque-horario");
+            const horarios = [];
+
+            bloques.forEach(bloque => {
+                const fecha = bloque.querySelector(".campo-dia").value;
+                const horaInicio = bloque.querySelector(".campo-hora-inicio").value;
+                const horaFin = bloque.querySelector(".campo-hora-fin").value;
+
+                if (fecha && horaInicio && horaFin) {
+                    horarios.push({ fecha, horaInicio, horaFin });
+                }
+            });
+
+            try {
+                const usuarioRef = doc(db, "usuarios_plus", usuario.uid);
+                await setDoc(usuarioRef, { horariosDisponibles: horarios }, { merge: true });
+                alert("✅ Horarios guardados exitosamente.");
+            } catch (error) {
+                console.error("Error al guardar horarios:", error);
+                alert("❌ Ocurrió un error al guardar los horarios.");
+            }
+        });
+
+        async function cargarHorariosGuardados(uid) {
+    try {
+        const usuarioRef = doc(db, "usuarios_plus", uid);
+        const docSnap = await getDoc(usuarioRef);
+
+        if (docSnap.exists()) {
+            const datos = docSnap.data();
+            const horarios = datos.horariosDisponibles || [];
+
+            const contenedor = document.getElementById("contenedor-bloques-horario");
+            contenedor.innerHTML = ""; // Limpiar bloques previos
+
+            const fechas = obtenerProximosDias(14);
+
+            horarios.forEach(horario => {
+                const div = document.createElement("div");
+                div.className = "bloque-horario";
+
+                const opcionesFecha = fechas.map(f =>
+                    `<option value="${f.valor}" ${f.valor === horario.fecha ? "selected" : ""}>${f.texto}</option>`
+                ).join("");
+
+                div.innerHTML = `
+                    <select class="campo-dia">
+                        <option value="">Seleccionar fecha</option>
+                        ${opcionesFecha}
+                    </select>
+                    <input type="time" class="campo-hora-inicio" value="${horario.horaInicio}">
+                    <input type="time" class="campo-hora-fin" value="${horario.horaFin}">
+                    <button type="button" class="boton-eliminar-horario">✖</button>
+                `;
+
+                div.querySelector(".boton-eliminar-horario").addEventListener("click", () => {
+                    div.remove();
+                });
+
+                contenedor.appendChild(div);
+            });
+        }
+    } catch (error) {
+        console.error("Error al cargar horarios desde Firestore:", error);
+    }
+}
     </script>
 
 
