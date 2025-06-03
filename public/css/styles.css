@@ -2683,13 +2683,26 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.boton-reservar-cita:hover {
-    background-color: var(--gris-suave);
-}
-
 /* PERFILES PERSONALES - GENERALES */
 
 /* MODAL DE RESERVA */
+
+.boton-consultar-disponibilidad {
+  background-color: white;
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.boton-consultar-disponibilidad:hover {
+  background-color: var(--color-principal);
+  color: white;
+}
 
 .modal-disponibilidad-fondo {
     position: fixed;

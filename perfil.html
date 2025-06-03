@@ -275,8 +275,10 @@
             boton.className = "boton-reservar-cita";
 
             if (datos.tipoCuenta === "plus") {
-                boton.textContent = "Reservar Cita Ahora";
-                boton.onclick = async () => {
+                const botonReservar = document.createElement("button");
+                botonReservar.className = "boton-reservar-cita";
+                botonReservar.textContent = "Reservar Cita Ahora";
+                botonReservar.onclick = async () => {
                     try {
                         const docRef = doc(db, "usuarios_plus", datos.uid);
                         const docSnap = await getDoc(docRef);
@@ -291,9 +293,19 @@
                         alert("Hubo un error al cargar los horarios.");
                     }
                 };
+                contenedorIzquierdo.appendChild(botonReservar);
+            } else if (datos.tipoCuenta === "free") {
+                const botonConsulta = document.createElement("button");
+                botonConsulta.className = "boton-reservar-cita"; // usa el mismo estilo
+                botonConsulta.textContent = "Consultar Disponibilidad";
+                botonConsulta.onclick = () => {
+                    const nombreCompleto = `${datos.nombre} ${datos.apellido}`;
+                    const mensaje = `¡Hola! Estoy viendo el perfil de ${nombreCompleto} en PsyConnects y me gustaría consultar su disponibilidad. ¿Podés brindarme más información?`;
+                    const url = `https://wa.me/59899043009?text=${encodeURIComponent(mensaje)}`;
+                    window.open(url, '_blank');
+                };
+                contenedorIzquierdo.appendChild(botonConsulta);
             }
-
-            contenedorIzquierdo.appendChild(boton);
 
             document.getElementById("perfil-foto-usuario").src = datos.fotoPerfilURL || "";
             document.getElementById("perfil-nombre-completo").textContent = `${datos.nombre} ${datos.apellido}`;
