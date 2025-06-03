@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="public/css/styles.css">
     <link rel="shortcut icon" href="public/img/marca/icono-psyconnects.png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
+
 </head>
 
 <body>
@@ -49,8 +49,9 @@
             <div class="contenido-bienvenida animar-entrada animacion-retraso-1">
                 <h1 class="titulo-bienvenida">¡Bienvenid@ a PsyConnects!</h1>
                 <p class="parrafo-bienvenida">
-                    Encontrá psicólogos y psicólogas de toda América Latina que se adapten a vos y a lo que estás buscando.  
-                    Podés filtrar por país, precio, experiencia, edad, género, tipo de terapia y mucho más.  
+                    Encontrá psicólogos y psicólogas de toda América Latina que se adapten a vos y a lo que estás
+                    buscando.
+                    Podés filtrar por país, precio, experiencia, edad, género, tipo de terapia y mucho más.
                     Elegí con tranquilidad a la persona adecuada para acompañarte en tu proceso. 🌎
                 </p>
                 <div class="botones-bienvenida">
@@ -115,6 +116,77 @@
             </div>
         </div>
 
+        <div class="index-reserva-fondo" id="fondoReserva">
+            <div class="index-reserva-contenedor">
+                <button class="index-reserva-boton-cerrar" id="cerrarReserva">✖</button>
+                <h2 class="index-reserva-titulo">¡Reservá tu primera cita con facilidad!</h2>
+                <p class="index-reserva-subtitulo">
+                    Completá tus datos y nosotros nos encargaremos de buscar al profesional más indicado para ti.
+                    En cuestión de unas horas, tendrás una cita confirmada con un/a psicólogo/a.
+                    <strong>Tu primera sesión será 100% gratuita</strong>.
+                    Si te hacés socio/a de PsyConnects, accedés a <strong>25% de descuento</strong> en futuras sesiones
+                    con tu psicólogo/a de preferencia.
+                </p>
+                <form id="formularioReserva" class="index-reserva-formulario">
+                    <input type="text" class="index-reserva-campo" placeholder="Nombre y apellido" required>
+                    <input type="email" class="index-reserva-campo" placeholder="Correo electrónico" required>
+                    <input type="tel" class="index-reserva-campo" placeholder="Teléfono" required>
+                    <input type="text" class="index-reserva-campo" placeholder="País de residencia" required>
+
+                    <select id="campoModalidad" class="index-reserva-campo" required>
+                        <option value="" disabled selected>Preferencia de modalidad</option>
+                        <option>Online</option>
+                        <option>Presencial</option>
+                        <option>Híbrido</option>
+                    </select>
+
+                    <select id="campoDia" class="index-reserva-campo" required>
+                        <option value="" disabled selected>Seleccioná un día</option>
+                        <option>Lunes</option>
+                        <option>Martes</option>
+                        <option>Miércoles</option>
+                        <option>Jueves</option>
+                        <option>Viernes</option>
+                    </select>
+
+                    <select id="campoHorario" class="index-reserva-campo" required>
+                        <option value="" disabled selected>Seleccioná un horario de preferencia</option>
+                        <option>08:00 - 09:00</option>
+                        <option>09:00 - 10:00</option>
+                        <option>10:00 - 11:00</option>
+                        <option>11:00 - 12:00</option>
+                        <option>14:00 - 15:00</option>
+                        <option>15:00 - 16:00</option>
+                        <option>16:00 - 17:00</option>
+                        <option>17:00 - 18:00</option>
+                        <option>18:00 - 19:00</option>
+                        <option>20:00 - 21:00</option>
+                    </select>
+
+                    <label class="index-reserva-check-socio">
+                        <input type="checkbox" id="hacermeSocio">
+                        Hacerme socio/a de PsyConnects
+                        <a href="ruta-del-pdf.pdf" target="_blank" class="index-reserva-enlace">(Saber cómo funciona ser
+                            socio/a)</a>
+                    </label>
+
+                    <button type="submit" class="index-reserva-boton-enviar">Confirmar reserva</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pantalla-reserva-exitosa ocultar-pantalla-reserva" id="pantallaReservaExitosa">
+            <div class="contenedor-mensaje-reserva-exitosa">
+                <h2 class="titulo-reserva-exitosa">¡Reserva enviada con éxito!</h2>
+                <p class="parrafo-reserva-exitosa">
+                    En breve recibirás la confirmación con el nombre del profesional asignado.
+                    <strong>Tu primera sesión será 100% gratuita</strong> y si te hiciste socio/a de PsyConnects,
+                    tendrás un 25% de descuento en tus próximas sesiones.
+                </p>
+                <button class="boton-cerrar-reserva-exito" id="cerrarReservaExitosa">Aceptar</button>
+            </div>
+        </div>
+
     </main>
 
     <footer class="pie-pagina">
@@ -162,6 +234,80 @@
         </div>
 
     </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            addDoc
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
+            authDomain: "psyconnects-web.firebaseapp.com",
+            projectId: "psyconnects-web",
+            storageBucket: "psyconnects-web.firebasestorage.app",
+            messagingSenderId: "172678256167",
+            appId: "1:172678256167:web:a490df1ae64f551a9c2002"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById("formularioReserva").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const nombre = this.querySelector('input[placeholder="Nombre y apellido"]').value;
+            const correo = this.querySelector('input[placeholder="Correo electrónico"]').value;
+            const telefono = this.querySelector('input[placeholder="Teléfono"]').value;
+            const pais = this.querySelector('input[placeholder="País de residencia"]').value;
+            const modalidad = document.getElementById("campoModalidad").value;
+            const dia = document.getElementById("campoDia").value;
+            const horario = document.getElementById("campoHorario").value;
+            const socio = document.getElementById("hacermeSocio").checked;
+
+            const datosReserva = {
+                nombre,
+                correo,
+                telefono,
+                pais,
+                modalidad,
+                dia,
+                horario,
+                socio,
+                timestamp: new Date()
+            };
+
+            try {
+                await addDoc(collection(db, "peticiones"), datosReserva);
+                document.getElementById("formularioReserva").reset();
+                document.getElementById("fondoReserva").style.display = "none";
+                document.getElementById("pantallaReservaExitosa").classList.remove("ocultar-pantalla-reserva");
+            } catch (error) {
+                console.error("Error al guardar la petición:", error);
+                alert("Ocurrió un error al enviar tu solicitud. Intentá nuevamente.");
+            }
+            document.getElementById("cerrarReservaExitosa").addEventListener("click", () => {
+                document.getElementById("pantallaReservaExitosa").classList.add("ocultar-pantalla-reserva");
+            });
+        });
+
+        document.querySelector('.boton-accion-bienvenida').addEventListener('click', () => {
+            document.getElementById('fondoReserva').style.display = 'flex';
+        });
+
+        document.getElementById('cerrarReserva').addEventListener('click', () => {
+            document.getElementById('fondoReserva').style.display = 'none';
+        });
+
+        document.getElementById('formularioReserva').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const socio = document.getElementById('hacermeSocio').checked;
+            this.reset();
+            document.getElementById('fondoReserva').style.display = 'none';
+        });
+    </script>
 
     <script>
 
