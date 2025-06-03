@@ -2223,6 +2223,49 @@ body {
 
 /* PERFIL PERSONAL - PSICOLOGOS PLUS */
 
+/* PERFILES PERSONALES - INDIVIDUALES DATOS DE INGRESO */
+
+.franja-informacion-visual-psicologo {
+    background-color: var(--color-principal);
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.contenedor-circulos-informacion {
+    display: flex;
+    gap: 3rem;
+}
+
+.circulo-informacion {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--color-principal);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.texto-circulo-numero {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.texto-circulo-label {
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+}
+
+/* PERFILES PERSONALES - INDIVIDUALES DATOS DE INGRESO */
+
 /* PERFILES PERSONALES - GENERALES */
 
 .seccion-bienvenida-perfil {
@@ -2645,6 +2688,46 @@ body {
 }
 
 /* PERFILES PERSONALES - GENERALES */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -338,6 +338,19 @@
             </div>
         </section>
 
+        <section class="franja-informacion-visual-psicologo">
+            <div class="contenedor-circulos-informacion">
+                <div class="circulo-informacion">
+                    <p class="texto-circulo-numero" id="contador-visitas-perfil">0</p>
+                    <p class="texto-circulo-label">Visitas al perfil</p>
+                </div>
+                <div class="circulo-informacion">
+                    <p class="texto-circulo-numero" id="contador-vistas-video">0</p>
+                    <p class="texto-circulo-label">Vistas del video</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="pie-pagina">
@@ -389,7 +402,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
         import { deleteUser } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         import { deleteDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
@@ -409,6 +422,32 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
         let uid = null;
+
+        async function inicializarContadores(uid) {
+            const docRef = doc(db, "usuarios_plus", uid);
+            const docSnap = await getDoc(docRef);
+
+            if (!docSnap.exists()) {
+                await setDoc(docRef, {
+                    visitasPerfil: 1,
+                    vistasVideo: 0
+                }, { merge: true });
+
+                document.getElementById("contador-visitas-perfil").textContent = 1;
+                document.getElementById("contador-vistas-video").textContent = 0;
+            } else {
+                const datos = docSnap.data();
+                const visitasActuales = datos.visitasPerfil || 0;
+                const vistasVideoActuales = datos.vistasVideo || 0;
+
+                document.getElementById("contador-visitas-perfil").textContent = visitasActuales + 1;
+                document.getElementById("contador-vistas-video").textContent = vistasVideoActuales;
+
+                await setDoc(docRef, {
+                    visitasPerfil: visitasActuales + 1
+                }, { merge: true });
+            }
+        }
 
         async function eliminarArchivosUsuario(uid) {
             const carpetas = [
@@ -441,16 +480,16 @@
             }
 
             try {
-                await eliminarArchivosUsuario(usuario.uid); 
+                await eliminarArchivosUsuario(usuario.uid);
                 await deleteDoc(doc(db, "usuarios_plus", usuario.uid));
 
                 const user = auth.currentUser;
                 if (user) await deleteUser(user);
 
-                localStorage.removeItem("usuarioPlus"); 
+                localStorage.removeItem("usuarioPlus");
 
                 alert("✅ Perfil eliminado correctamente.");
-                window.location.href = "index.html"; 
+                window.location.href = "index.html";
             } catch (error) {
                 console.error("Error al eliminar el perfil:", error);
                 alert("❌ Hubo un error al eliminar tu perfil. Intentalo nuevamente.");
@@ -542,6 +581,8 @@
                 window.location.href = "login.html";
                 return;
             }
+
+            inicializarContadores(usuario.uid);
 
             document.getElementById('nombre').value = usuario.nombre || "";
             document.getElementById('apellido').value = usuario.apellido || "";

@@ -194,7 +194,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
@@ -257,14 +257,12 @@
                 ${redesHTML}
                 </div>
 <div class="boton-ver-perfil">
-    <button onclick="location.href='perfil.html?id=${datos.correo}'">Ver perfil 👉</button>
+    <button onclick="verPerfilPsicologo('${datos.correo}')">Ver perfil 👉</button>
 </div>
 
 ${(datos.videoArchivoURL || datos.videoLink) ? `
 <div class="boton-ver-perfil">
-    <a href="${datos.videoArchivoURL || datos.videoLink}" target="_blank">
-    <button>Ver video 🎥</button>
-    </a>
+  <button onclick="verVideoPsicologo('${datos.correo}', '${datos.videoArchivoURL || datos.videoLink}')">Ver video 🎥</button>
 </div>
 ` : ''}
             </div>
@@ -365,6 +363,50 @@ ${(datos.videoArchivoURL || datos.videoLink) ? `
         document.getElementById("limpiar-filtros").addEventListener("click", () => {
             mostrarPsicologos(psicologosTotales);
         });
+
+        window.verPerfilPsicologo = async function (correo) {
+            try {
+                const querySnapshot = await getDocs(collection(db, "usuarios_plus"));
+                const documento = querySnapshot.docs.find(doc => doc.data().correo === correo);
+
+                if (documento) {
+                    const refUsuario = doc(db, "usuarios_plus", documento.id);
+                    const data = documento.data();
+                    const visitasActuales = data.visitasPerfil || 0;
+
+                    await updateDoc(refUsuario, {
+                        visitasPerfil: visitasActuales + 1
+                    });
+                }
+
+                location.href = `perfil.html?id=${correo}`;
+            } catch (error) {
+                console.error("Error al actualizar visitas al perfil:", error);
+                location.href = `perfil.html?id=${correo}`;
+            }
+        };
+
+        window.verVideoPsicologo = async function (correo, url) {
+            try {
+                const querySnapshot = await getDocs(collection(db, "usuarios_plus"));
+                const documento = querySnapshot.docs.find(doc => doc.data().correo === correo);
+
+                if (documento) {
+                    const refUsuario = doc(db, "usuarios_plus", documento.id);
+                    const data = documento.data();
+                    const vistasActuales = data.vistasVideo || 0;
+
+                    await updateDoc(refUsuario, {
+                        vistasVideo: vistasActuales + 1
+                    });
+                }
+
+                window.open(url, "_blank");
+            } catch (error) {
+                console.error("Error al actualizar vistas del video:", error);
+                window.open(url, "_blank");
+            }
+        };
 
         cargarPsicologos();
     </script>
