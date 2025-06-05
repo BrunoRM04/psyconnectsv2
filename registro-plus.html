@@ -16,7 +16,7 @@
 
     <div class="barra-promocional">
         <p class="mensaje-promocional">
-            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+            🎁 ¡Tu primera sesión con nosotros es totalmente gratis! 🎁
         </p>
     </div>
 
@@ -38,8 +38,7 @@
         <ul class="lista-navegacion">
             <li><a href="index.html">🏠 Inicio</a></li>
             <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
-            <li><a href="#">🧑‍💼 Para Empresas</a></li>
-            <li><a href="#">📞 Contacto</a></li>
+            <li><a href="nuestra-historia.html">📖 Nuestra Historia</a></li>
         </ul>
     </nav>
 
@@ -58,30 +57,30 @@
                 <form id="formulario-registro">
                     <div class="grupo-campo">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre">
                     </div>
                     <div class="grupo-campo">
                         <label for="apellido">Apellido</label>
-                        <input type="text" id="apellido" name="apellido" required>
+                        <input type="text" id="apellido" name="apellido">
                     </div>
                     <div class="grupo-campo">
                         <label for="documento">Número de documento</label>
-                        <input type="text" id="documento" name="documento" required>
+                        <input type="text" id="documento" name="documento">
                     </div>
                     <div class="grupo-campo">
                         <label for="correo">Correo electrónico</label>
-                        <input type="email" id="correo" name="correo" required>
+                        <input type="email" id="correo" name="correo">
                     </div>
                     <div class="grupo-campo campo-password">
                         <label for="contrasena">Contraseña</label>
                         <div class="contenedor-password">
-                            <input type="password" id="contrasena" name="contrasena" required>
+                            <input type="password" id="contrasena" name="contrasena">
                             <i class='bx bx-hide icono-password' id="icono-password"></i>
                         </div>
                     </div>
                     <div class="grupo-campo">
                         <label for="genero">Género con el que se identifica</label>
-                        <select id="genero" name="genero" required>
+                        <select id="genero" name="genero">
                             <option value="" disabled selected>Seleccione una opción</option>
                             <option value="femenino">Femenino</option>
                             <option value="masculino">Masculino</option>
@@ -110,37 +109,45 @@
                 <form id="formulario-contacto">
                     <div class="grupo-campo">
                         <label for="fecha-nacimiento">Fecha de nacimiento</label>
-                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required>
+                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
                     </div>
                     <div class="grupo-campo">
                         <label for="pais">País</label>
-                        <select id="pais" name="pais" required>
+                        <select id="pais" name="pais">
                             <option value="" disabled selected>Seleccione su país</option>
-                            <option value="uruguay">Uruguay</option>
                             <option value="argentina">Argentina</option>
+                            <option value="belice">Belice</option>
+                            <option value="bolivia">Bolivia</option>
                             <option value="brasil">Brasil</option>
                             <option value="chile">Chile</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="costa-rica">Costa Rica</option>
+                            <option value="cuba">Cuba</option>
+                            <option value="dominica">Dominica</option>
+                            <option value="republica-dominicana">República Dominicana</option>
+                            <option value="ecuador">Ecuador</option>
+                            <option value="el-salvador">El Salvador</option>
+                            <option value="guatemala">Guatemala</option>
+                            <option value="haiti">Haití</option>
+                            <option value="honduras">Honduras</option>
+                            <option value="jamaica">Jamaica</option>
+                            <option value="mexico">México</option>
+                            <option value="nicaragua">Nicaragua</option>
+                            <option value="panama">Panamá</option>
                             <option value="paraguay">Paraguay</option>
                             <option value="peru">Perú</option>
-                            <option value="bolivia">Bolivia</option>
-                            <option value="ecuador">Ecuador</option>
-                            <option value="colombia">Colombia</option>
+                            <option value="puerto-rico">Puerto Rico</option>
+                            <option value="surinam">Surinam</option>
+                            <option value="trinidad-y-tobago">Trinidad y Tobago</option>
+                            <option value="uruguay">Uruguay</option>
                             <option value="venezuela">Venezuela</option>
-                            <option value="mexico">México</option>
-                            <option value="panama">Panamá</option>
-                            <option value="costa-rica">Costa Rica</option>
-                            <option value="guatemala">Guatemala</option>
-                            <option value="el-salvador">El Salvador</option>
-                            <option value="honduras">Honduras</option>
-                            <option value="nicaragua">Nicaragua</option>
-                            <option value="republica-dominicana">República Dominicana</option>
                         </select>
                     </div>
                     <div class="grupo-campo">
                         <label for="telefono">Teléfono (con código de país)</label>
                         <div class="campo-telefono">
                             <span id="codigo-pais">+598</span>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 91234567">
+                            <input type="tel" id="telefono" name="telefono" placeholder="Ej: 91234567">
                         </div>
                     </div>
                     <div class="navegacion-formulario">
@@ -165,17 +172,17 @@
                 <form id="formulario-perfil">
                     <div class="grupo-campo">
                         <label for="experiencia">Años de experiencia</label>
-                        <input type="number" id="experiencia" name="experiencia" required>
+                        <input type="number" id="experiencia" name="experiencia">
                     </div>
                     <div class="grupo-campo">
                         <label for="foto-perfil">Foto de perfil</label>
-                        <input type="file" id="foto-perfil" accept="image/*" required>
+                        <input type="file" id="foto-perfil" accept="image/*">
                         <small class="mensaje-foto">Recomendamos que subas una imagen donde tu rostro esté centrado y
                             visible.</small>
                     </div>
                     <div class="grupo-campo">
                         <label for="descripcion">Descripción personal / profesional</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
                     </div>
                     <div class="grupo-campo">
                         <label>Experiencia profesional</label>
@@ -191,11 +198,11 @@
                     </div>
                     <div class="grupo-campo">
                         <label for="precio">Precio por hora (USD)</label>
-                        <input type="number" id="precio" name="precio" required>
+                        <input type="number" id="precio" name="precio">
                     </div>
                     <div class="grupo-campo">
                         <label>Modalidad de atención</label>
-                        <select id="modalidad" name="modalidad" required>
+                        <select id="modalidad" name="modalidad">
                             <option value="" disabled selected>Seleccione una opción</option>
                             <option value="online">Online</option>
                             <option value="presencial">Presencial</option>
@@ -438,7 +445,8 @@
                     genero: document.getElementById("genero").value,
                     fechaNacimiento: document.getElementById("fecha-nacimiento").value,
                     pais: document.getElementById("pais").value,
-                    telefono: document.getElementById("telefono").value,
+                    codigoPais: document.getElementById("codigo-pais").textContent,
+                    telefono: document.getElementById("codigo-pais").textContent + document.getElementById("telefono").value,
                     experiencia: document.getElementById("experiencia").value,
                     descripcion: document.getElementById("descripcion").value,
                     precio: document.getElementById("precio").value,
@@ -554,12 +562,34 @@
         }
 
         const codigosPorPais = {
-            'uruguay': '+598', 'argentina': '+54', 'brasil': '+55', 'chile': '+56',
-            'paraguay': '+595', 'peru': '+51', 'bolivia': '+591', 'ecuador': '+593',
-            'colombia': '+57', 'venezuela': '+58', 'mexico': '+52', 'panama': '+507',
-            'costa-rica': '+506', 'guatemala': '+502', 'el-salvador': '+503',
-            'honduras': '+504', 'nicaragua': '+505', 'republica-dominicana': '+1'
+            'argentina': '+54',
+            'belice': '+501',
+            'bolivia': '+591',
+            'brasil': '+55',
+            'chile': '+56',
+            'colombia': '+57',
+            'costa-rica': '+506',
+            'cuba': '+53',
+            'dominica': '+1-767',
+            'republica-dominicana': '+1-809',
+            'ecuador': '+593',
+            'el-salvador': '+503',
+            'guatemala': '+502',
+            'haiti': '+509',
+            'honduras': '+504',
+            'jamaica': '+1-876',
+            'mexico': '+52',
+            'nicaragua': '+505',
+            'panama': '+507',
+            'paraguay': '+595',
+            'peru': '+51',
+            'puerto-rico': '+1-787',
+            'surinam': '+597',
+            'trinidad-y-tobago': '+1-868',
+            'uruguay': '+598',
+            'venezuela': '+58'
         };
+
 
         const selectPais = document.getElementById('pais');
         if (selectPais) {
@@ -594,19 +624,12 @@
 
         function agregarExperiencia() {
             const contenedor = document.getElementById('contenedor-experiencia');
-            const ultimosInputs = contenedor.querySelectorAll('.item-dinamico:last-child input');
-            let vacio = false;
-            ultimosInputs?.forEach(input => {
-                if (!input.value.trim()) vacio = true;
-            });
-            if (vacio) return alert("Completa el campo anterior antes de agregar uno nuevo.");
-
             const div = document.createElement('div');
             div.className = 'item-dinamico';
             div.innerHTML = `
-        <input type="text" placeholder="Lugar" required>
-        <input type="text" placeholder="Años (Ej: 2020-2023)" required>
-        <input type="text" placeholder="Tareas realizadas" required>
+        <input type="text" placeholder="Lugar">
+        <input type="text" placeholder="Años (Ej: 2020-2023)">
+        <input type="text" placeholder="Tareas realizadas">
         <label><input type="checkbox"> Actualmente trabajo aquí</label>
         <button type="button" class="boton-eliminar" onclick="this.parentElement.remove()">×</button>
     `;
@@ -615,19 +638,19 @@
 
         function agregarCertificacion() {
             const contenedor = document.getElementById('contenedor-certificaciones');
-            const ultimosInputs = contenedor.querySelectorAll('.item-dinamico:last-child input');
-            let vacio = false;
-            ultimosInputs?.forEach(input => {
-                if (!input.value.trim()) vacio = true;
-            });
-            if (vacio) return alert("Completa la certificación anterior antes de agregar una nueva.");
+            // const ultimosInputs = contenedor.querySelectorAll('.item-dinamico:last-child input');
+            // let vacio = false;
+            // ultimosInputs?.forEach(input => {
+            //     if (!input.value.trim()) vacio = true;
+            // });
+            // if (vacio) return alert("Completa la certificación anterior antes de agregar una nueva.");
 
             const div = document.createElement('div');
             div.className = 'item-dinamico';
             div.innerHTML = `
-        <input type="text" placeholder="Nombre de la certificación" required>
-        <input type="text" placeholder="Año de inicio" required>
-        <input type="text" placeholder="Año de finalización" required>
+        <input type="text" placeholder="Nombre de la certificación">
+        <input type="text" placeholder="Año de inicio">
+        <input type="text" placeholder="Año de finalización">
         <button type="button" class="boton-eliminar" onclick="this.parentElement.remove()">×</button>
     `;
             contenedor.appendChild(div);

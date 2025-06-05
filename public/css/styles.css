@@ -392,6 +392,7 @@ body {
         gap: 10px;
         min-height: unset;
         margin-bottom: 30px;
+        padding-bottom: 50px
     }
 
     .contenido-bienvenida,
@@ -613,6 +614,11 @@ body {
         width: 100%;
         max-width: 720px;
     }
+}
+
+.seccion-ajustada {
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 /* SECCIÓN - INDEX */
@@ -3033,7 +3039,129 @@ body {
     }
 }
 
+#index-reserva-campo[campoEspecialidades] {
+    height: auto;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
 /* PETICIONES DEL INDEX*/
+
+/* BOTON DE WHATSAPP*/
+
+.boton-flotante-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+.boton-flotante-whatsapp i {
+    font-size: 36px;
+}
+
+/* BOTON DE WHATSAPP*/
+
+/* NUESTRA HISTORIA */
+
+.seccion-historia {
+    background-color: var(--color-fondo);
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-historia {
+    max-width: 950px;
+    width: 100%;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.titulo-historia {
+    font-size: 2.8rem;
+    color: var(--color-principal);
+    margin-bottom: 1rem;
+}
+
+.subtitulo-historia {
+    font-size: 1.2rem;
+    color: var(--negro-suave);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.parrafo-historia {
+    font-size: 1rem;
+    color: var(--negro-suave);
+    line-height: 1.7;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .titulo-historia {
+        font-size: 2.2rem;
+    }
+
+    .subtitulo-historia {
+        font-size: 1.05rem;
+    }
+
+    .parrafo-historia {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .seccion-historia {
+        padding: 3rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-historia {
+        font-size: 1.8rem;
+    }
+
+    .subtitulo-historia {
+        font-size: 1rem;
+    }
+
+    .parrafo-historia {
+        font-size: 0.92rem;
+        text-align: left;
+    }
+
+    .seccion-historia {
+        padding: 2.5rem 1rem;
+    }
+
+    .contenedor-historia {
+        padding: 0;
+    }
+}
+
+/* NUESTRA HISTORIA */
+
+
+
+
+
+
+
+
+
+
 
 
 

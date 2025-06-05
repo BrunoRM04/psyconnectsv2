@@ -16,7 +16,7 @@
 
     <div class="barra-promocional">
         <p class="mensaje-promocional">
-            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+            🎁 ¡Tu primera sesión con nosotros es totalmente gratis! 🎁
         </p>
     </div>
 
@@ -38,8 +38,7 @@
         <ul class="lista-navegacion">
             <li><a href="index.html">🏠 Inicio</a></li>
             <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
-            <li><a href="#">🧑‍💼 Para Empresas</a></li>
-            <li><a href="#">📞 Contacto</a></li>
+            <li><a href="nuestra-historia.html">📖 Nuestra Historia</a></li>
         </ul>
     </nav>
 
@@ -144,6 +143,11 @@
             </div>
         </div>
 
+        <a href="https://wa.me/59899043009" target="_blank" class="boton-flotante-whatsapp"
+            aria-label="Chat por WhatsApp">
+            <i class='bx bxl-whatsapp'></i>
+        </a>
+
     </main>
 
     <footer class="pie-pagina">
@@ -194,7 +198,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
@@ -262,7 +266,7 @@
 
 ${(datos.videoArchivoURL || datos.videoLink) ? `
 <div class="boton-ver-perfil">
-  <button onclick="verVideoPsicologo('${datos.correo}', '${datos.videoArchivoURL || datos.videoLink}')">Ver video 🎥</button>
+  <button onclick="verVideoPsicologo('${datos.id}', '${datos.videoArchivoURL || datos.videoLink}')">Ver video 🎥</button>
 </div>
 ` : ''}
             </div>
@@ -286,13 +290,14 @@ ${(datos.videoArchivoURL || datos.videoLink) ? `
             const normales = [];
 
             const snapshotRecomendados = await getDocs(collection(db, "usuarios_plus"));
-            snapshotRecomendados.forEach(doc => {
-                recomendados.push({ datos: doc.data(), recomendado: true });
+            const snapshotNormales = await getDocs(collection(db, "usuarios_free"));
+
+            snapshotRecomendados.forEach(docSnap => {
+                recomendados.push({ datos: { ...docSnap.data(), id: docSnap.id }, recomendado: true });
             });
 
-            const snapshotNormales = await getDocs(collection(db, "usuarios_free"));
-            snapshotNormales.forEach(doc => {
-                normales.push({ datos: doc.data(), recomendado: false });
+            snapshotNormales.forEach(docSnap => {
+                normales.push({ datos: { ...docSnap.data(), id: docSnap.id }, recomendado: false });
             });
 
             const todos = mezclarArray([...recomendados, ...normales]);
@@ -386,14 +391,12 @@ ${(datos.videoArchivoURL || datos.videoLink) ? `
             }
         };
 
-        window.verVideoPsicologo = async function (correo, url) {
+        window.verVideoPsicologo = async function (id, url) {
             try {
-                const querySnapshot = await getDocs(collection(db, "usuarios_plus"));
-                const documento = querySnapshot.docs.find(doc => doc.data().correo === correo);
-
-                if (documento) {
-                    const refUsuario = doc(db, "usuarios_plus", documento.id);
-                    const data = documento.data();
+                const refUsuario = doc(db, "usuarios_plus", id);
+                const docSnap = await getDoc(refUsuario);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
                     const vistasActuales = data.vistasVideo || 0;
 
                     await updateDoc(refUsuario, {

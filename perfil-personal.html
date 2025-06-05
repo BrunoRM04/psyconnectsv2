@@ -16,7 +16,7 @@
 
     <div class="barra-promocional">
         <p class="mensaje-promocional">
-            🎁 ¡Tu primera sesión es gratis y la segunda con 50% OFF! 🎁
+            🎁 ¡Tu primera sesión con nosotros es totalmente gratis! 🎁
         </p>
     </div>
 
@@ -38,8 +38,7 @@
         <ul class="lista-navegacion">
             <li><a href="index.html">🏠 Inicio</a></li>
             <li><a href="psicologos-disponibles.html">👥 Psicólogos Disponibles</a></li>
-            <li><a href="#">🧑‍💼 Para Empresas</a></li>
-            <li><a href="#">📞 Contacto</a></li>
+            <li><a href="nuestra-historia.html">📖 Nuestra Historia</a></li>
         </ul>
     </nav>
 
@@ -420,11 +419,12 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
         import { deleteUser } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         import { deleteDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
         import { deleteObject, listAll } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+        import { onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCFrMomIGmjYdJdXswCEwJT62JJtyyY4UM",
@@ -452,14 +452,12 @@
                 }, { merge: true });
 
                 document.getElementById("contador-visitas-perfil").textContent = 1;
-                document.getElementById("contador-vistas-video").textContent = 0;
             } else {
                 const datos = docSnap.data();
                 const visitasActuales = datos.visitasPerfil || 0;
                 const vistasVideoActuales = datos.vistasVideo || 0;
 
                 document.getElementById("contador-visitas-perfil").textContent = visitasActuales + 1;
-                document.getElementById("contador-vistas-video").textContent = vistasVideoActuales;
 
                 await setDoc(docRef, {
                     visitasPerfil: visitasActuales + 1
@@ -601,6 +599,14 @@
             }
 
             inicializarContadores(usuario.uid);
+            const docRef = doc(db, "usuarios_plus", usuario.uid);
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const datos = docSnap.data();
+                    const vistasVideoActuales = datos.vistasVideo || 0;
+                    document.getElementById("contador-vistas-video").textContent = vistasVideoActuales;
+                }
+            });
             cargarHorariosGuardados(usuario.uid);
 
             document.getElementById('nombre').value = usuario.nombre || "";
@@ -888,28 +894,28 @@
         });
 
         async function cargarHorariosGuardados(uid) {
-    try {
-        const usuarioRef = doc(db, "usuarios_plus", uid);
-        const docSnap = await getDoc(usuarioRef);
+            try {
+                const usuarioRef = doc(db, "usuarios_plus", uid);
+                const docSnap = await getDoc(usuarioRef);
 
-        if (docSnap.exists()) {
-            const datos = docSnap.data();
-            const horarios = datos.horariosDisponibles || [];
+                if (docSnap.exists()) {
+                    const datos = docSnap.data();
+                    const horarios = datos.horariosDisponibles || [];
 
-            const contenedor = document.getElementById("contenedor-bloques-horario");
-            contenedor.innerHTML = ""; // Limpiar bloques previos
+                    const contenedor = document.getElementById("contenedor-bloques-horario");
+                    contenedor.innerHTML = ""; // Limpiar bloques previos
 
-            const fechas = obtenerProximosDias(14);
+                    const fechas = obtenerProximosDias(14);
 
-            horarios.forEach(horario => {
-                const div = document.createElement("div");
-                div.className = "bloque-horario";
+                    horarios.forEach(horario => {
+                        const div = document.createElement("div");
+                        div.className = "bloque-horario";
 
-                const opcionesFecha = fechas.map(f =>
-                    `<option value="${f.valor}" ${f.valor === horario.fecha ? "selected" : ""}>${f.texto}</option>`
-                ).join("");
+                        const opcionesFecha = fechas.map(f =>
+                            `<option value="${f.valor}" ${f.valor === horario.fecha ? "selected" : ""}>${f.texto}</option>`
+                        ).join("");
 
-                div.innerHTML = `
+                        div.innerHTML = `
                     <select class="campo-dia">
                         <option value="">Seleccionar fecha</option>
                         ${opcionesFecha}
@@ -919,17 +925,17 @@
                     <button type="button" class="boton-eliminar-horario">✖</button>
                 `;
 
-                div.querySelector(".boton-eliminar-horario").addEventListener("click", () => {
-                    div.remove();
-                });
+                        div.querySelector(".boton-eliminar-horario").addEventListener("click", () => {
+                            div.remove();
+                        });
 
-                contenedor.appendChild(div);
-            });
+                        contenedor.appendChild(div);
+                    });
+                }
+            } catch (error) {
+                console.error("Error al cargar horarios desde Firestore:", error);
+            }
         }
-    } catch (error) {
-        console.error("Error al cargar horarios desde Firestore:", error);
-    }
-}
     </script>
 
 
