@@ -813,6 +813,27 @@ body {
     }
 }
 
+/* AVISO PAYPAL */
+.seccion-aviso-paypal {
+    background-color: var(--color-hover-fondo);        
+    padding: 25px 5%;
+    text-align: center;                  
+    margin-top: 60px;                 
+}
+
+.texto-aviso-paypal {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .texto-aviso-paypal {
+        font-size: 1.05rem;
+    }
+}
+
 /* REGISTRO PSICÓLOGOS - GENERAL */
 
 /* REGISTRO PSICÓLOGOS - FREE */
